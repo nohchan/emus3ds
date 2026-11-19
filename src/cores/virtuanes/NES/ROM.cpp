@@ -27,7 +27,7 @@
 #include "ROM.h"
 #include "ROMDB.h"
 #include "MMU.h"
-#include "mapper.h"
+#include "Mapper.h"
 
 #include "IPS.h"
 #include "3dsdbg.h"

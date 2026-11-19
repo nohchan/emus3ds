@@ -22,7 +22,7 @@
 #include "CPU.h"
 #include "PPU.h"
 #include "ROM.h"
-#include "mapper.h"
+#include "Mapper.h"
 
 #include "3dsdbg.h"
 #include "3dsopt.h"

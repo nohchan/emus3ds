@@ -30,7 +30,7 @@
 #include "APU.h"
 #include "PAD.h"
 #include "ROM.h"
-#include "mapper.h"
+#include "Mapper.h"
 #include "3dsdbg.h"
 
 //#include "DirectDraw.h"

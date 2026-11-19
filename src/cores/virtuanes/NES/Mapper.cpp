@@ -17,7 +17,7 @@
 #include "Nes.h"
 #include "MMU.h"
 
-#include "mapper.h"
+#include "Mapper.h"
 
 #include <string.h>
 const BOARDINFO BoardInfo[]=
