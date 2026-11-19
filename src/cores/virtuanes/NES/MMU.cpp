@@ -6,14 +6,14 @@
 //                                               last modify ----/--/-- //
 //////////////////////////////////////////////////////////////////////////
 #define	WIN32_LEAN_AND_MEAN
-#include <windows.h>
-#include "typedef.h"
-#include "macro.h"
+#include <Windows.h>
+#include "TypeDef.h"
+#include "Macro.h"
 
-#include "mmu.h"
-#include "nes.h"
-#include "ppu.h"
-#include "cpu.h"
+#include "MMU.h"
+#include "Nes.h"
+#include "PPU.h"
+#include "CPU.h"
 
 BYTE	nnn;
 

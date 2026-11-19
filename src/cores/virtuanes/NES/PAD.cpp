@@ -6,21 +6,21 @@
 //                                               last modify ----/--/-- //
 //////////////////////////////////////////////////////////////////////////
 #define	WIN32_LEAN_AND_MEAN
-#include <windows.h>
-#include "typedef.h"
-#include "macro.h"
+#include <Windows.h>
+#include "TypeDef.h"
+#include "Macro.h"
 
 #include "Config.h"
 
 //#include "DirectDraw.h"
 //#include "DirectInput.h"
 
-#include "nes.h"
-#include "mmu.h"
-#include "cpu.h"
-#include "ppu.h"
-#include "pad.h"
-#include "rom.h"
+#include "Nes.h"
+#include "MMU.h"
+#include "CPU.h"
+#include "PPU.h"
+#include "PAD.h"
+#include "ROM.h"
 
 PAD::PAD( NES* parent ) : nes( parent )
 {

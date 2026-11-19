@@ -6,22 +6,22 @@
 //                                               last modify ----/--/-- //
 //////////////////////////////////////////////////////////////////////////
 #define	WIN32_LEAN_AND_MEAN
-#include <windows.h>
+#include <Windows.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 #include "VirtuaNESres.h"
 
-#include "typedef.h"
-#include "macro.h"
+#include "TypeDef.h"
+#include "Macro.h"
 
 #include "App.h"
 
-#include "nes.h"
-#include "mmu.h"
-#include "cpu.h"
-#include "ppu.h"
-#include "rom.h"
+#include "Nes.h"
+#include "MMU.h"
+#include "CPU.h"
+#include "PPU.h"
+#include "ROM.h"
 #include "mapper.h"
 
 #include "3dsdbg.h"
