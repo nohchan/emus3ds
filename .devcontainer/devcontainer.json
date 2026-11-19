@@ -1,0 +1,11 @@
+{
+  "name": "Emus3DS build environment",
+  "image": "devkitpro/devkitarm:latest",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools"
+      ]
+    }
+  }
+}
