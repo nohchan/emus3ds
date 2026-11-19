@@ -55,3 +55,16 @@ https://github.com/R-YaTian/emus3ds/blob/master/readme-picodrive.md
 ![alt tag](https://github.com/R-YaTian/emus3ds/blob/master/screenshots/PicoDrive01.bmp)
 
 ![alt tag](https://github.com/R-YaTian/emus3ds/blob/master/screenshots/PicoDrive02.bmp)
+
+
+## Build in GitHub Codespaces
+
+Open the repository's **Code** menu, create a Codespace, then run these commands in its terminal:
+
+```sh
+make -j2 -f virtuanes-make build
+make -j2 -f temperpce-make build
+make -j2 -f picodrive-make build
+```
+
+Each command creates a `.3dsx` file in the repository root. GitHub Actions also builds these three targets for pushes to `master`, pull requests, and manual runs. Download the resulting files from the run's **Artifacts** section.
