@@ -643,13 +643,15 @@ void ui3dsDrawStringOnly(uint16 *fb, int absoluteX, int absoluteY, int color, co
             if (ui3dsDecodeUtf8At(buffer,length,&next,&cp)) {
                 uint16 gbk=cp<=0xFFFF ? getGbkChar((uint16)cp) : 0;
                 uint8 hi=gbk>>8, lo=gbk&0xFF;
-                if (fontGBK && hi>=gbkRowStart && hi<=gbkRowEnd && lo>=gbkColStart && lo<=gbkColEnd)
+                int advance;
+                if (fontGBK && hi>=gbkRowStart && hi<=gbkRowEnd && lo>=gbkColStart && lo<=gbkColEnd) {
                     ui3dsDrawGBK(fb,x,y,color,gbk);
-                else {
-                    int advance=ui3dsDrawSystemGlyph(fb,x,y,color,cp);
+                    advance=cjkGlyphAdvance;
+                } else {
+                    advance=ui3dsDrawSystemGlyph(fb,x,y,color,cp);
                     if (advance<=0) advance=fontWidth[(u8)'?'];
                 }
-                x += cjkGlyphAdvance; i=next; continue;
+                x += advance; i=next; continue;
             }
         }
         if (c!=32) ui3dsDrawChar(fb,x,y,color,c);
@@ -705,7 +707,7 @@ void ui3dsDrawStringWithWrapping(int x0, int y0, int x1, int y1, int color, int 
                     uint8 hi=gbk>>8, lo=gbk&0xFF;
                     lineWidth += (fontGBK && hi>=gbkRowStart && hi<=gbkRowEnd && lo>=gbkColStart && lo<=gbkColEnd)
                         ? cjkGlyphAdvance : ui3dsSystemGlyphWidth(cp);
-                    i=next;
+                    i=next-1;
                 } else lineWidth += fontWidth[(uint8)buffer[i]];
             } else lineWidth += fontWidth[(uint8)buffer[i]];
 
