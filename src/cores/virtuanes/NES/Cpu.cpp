@@ -23,7 +23,7 @@
 #include "PPU.h"
 #include "APU.h"
 #include "ROM.h"
-#include "mapper.h"
+#include "Mapper.h"
 
 #include "3dsemu.h"
 #include "3dsmain.h"
