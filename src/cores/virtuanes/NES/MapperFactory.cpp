@@ -23,7 +23,7 @@
 #include "PAD.h"
 #include "ROM.h"
 
-#include "mapper.h"
+#include "Mapper.h"
 
 #include "Config.h"
 
