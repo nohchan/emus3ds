@@ -9,13 +9,13 @@
 #include "Config.h"
 
 #include "APU_INTERNAL.h"
-#include <windows.h>
-#include "windows.h"
+#include <Windows.h>
+#include "Windows.h"
 
-#include "state.h"
-#include "rom.h"
-#include "mmu.h"
-#include "ppu.h"
+#include "State.h"
+#include "ROM.h"
+#include "MMU.h"
+#include "PPU.h"
 
 
 // Dummy
