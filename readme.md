@@ -62,9 +62,9 @@ https://github.com/R-YaTian/emus3ds/blob/master/readme-picodrive.md
 Open the repository's **Code** menu, create a Codespace, then run these commands in its terminal:
 
 ```sh
-make -j2 -f virtuanes-make build
-make -j2 -f temperpce-make build
-make -j2 -f picodrive-make build
+make -j2 -f virtuanes-make cia
+make -j2 -f temperpce-make cia
+make -j2 -f picodrive-make cia
 ```
 
-Each command creates a `.3dsx` file in the repository root. GitHub Actions also builds these three targets for pushes to `master`, pull requests, and manual runs. Download the resulting files from the run's **Artifacts** section.
+Each command creates both a `.3dsx` homebrew file and a `.cia` installer in the repository root. GitHub Actions builds all three emulators for pushes to `master`, pull requests, and manual runs. Each artifact contains both formats; download them from the run's **Artifacts** section.
