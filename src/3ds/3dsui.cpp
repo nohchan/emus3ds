@@ -446,6 +446,7 @@ void ui3dsDrawGBK(uint16 *frameBuffer, int x, int y, int color565, uint16 ch) {
 
 
 
+// Use the system font for Japanese filename glyphs absent from the bundled GBK sheet.
 static bool ui3dsDecodeUtf8At(const char *text, int length, int *offset, u32 *codePoint)
 {
     int i = *offset; u8 lead = (u8)text[i];
