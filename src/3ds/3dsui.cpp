@@ -66,6 +66,7 @@ uint8 *fontWidth;
 //---------------------------------------------------------------
 void ui3dsInitialize()
 {
+    fontEnsureMapped();
     systemFont = fontGetSystemFont();
     // Precompute alphas
     //
