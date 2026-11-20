@@ -10,6 +10,9 @@
 #include <string.h>
 #include <stdio.h>
 #include <3ds.h>
+extern "C" {
+#include <3ds/font.h>
+}
 
 #include "3dsinterface.h"
 #include "3dstypes.h"
@@ -29,6 +32,9 @@ int viewportX2 = 320;
 int viewportY2 = 240;
 
 int fontHeight = 13;
+static const int cjkGlyphWidth = 13;
+static const int cjkGlyphAdvance = 14;
+static CFNT_s *systemFont = NULL;
 
 int viewportStackCount = 0;
 int viewportStack[20][4];
@@ -60,6 +66,8 @@ uint8 *fontWidth;
 //---------------------------------------------------------------
 void ui3dsInitialize()
 {
+    fontEnsureMapped();
+    systemFont = fontGetSystemFont();
     // Precompute alphas
     //
     for (int i = 0; i < 32; i++)
@@ -404,7 +412,7 @@ void ui3dsDrawGBK(uint16 *frameBuffer, int x, int y, int color565, uint16 ch) {
 
     // Draws a character to the screen at (x,y)
     // (0,0) is at the top left of the screen.
-    int wid = 12;
+    int wid = cjkGlyphWidth;
     uint8 alpha;
 
     int idx = (r - gbkRowStart) * colCount + (c - gbkColStart);
@@ -437,42 +445,85 @@ void ui3dsDrawGBK(uint16 *frameBuffer, int x, int y, int color565, uint16 ch) {
 }
 
 
+
+static bool ui3dsDecodeUtf8At(const char *text, int length, int *offset, u32 *codePoint)
+{
+    int i = *offset; u8 lead = (u8)text[i];
+    int extra = (lead >= 0xC2 && lead <= 0xDF) ? 1 : (lead >= 0xE0 && lead <= 0xEF) ? 2 : (lead >= 0xF0 && lead <= 0xF4) ? 3 : 0;
+    if (!extra || i + extra >= length) { *codePoint = lead; *offset = i + 1; return false; }
+    u32 cp = lead & (extra == 1 ? 0x1F : extra == 2 ? 0x0F : 0x07);
+    for (int j = 1; j <= extra; ++j) {
+        u8 tail = (u8)text[i+j];
+        if ((tail & 0xC0) != 0x80) { *codePoint = lead; *offset = i + 1; return false; }
+        cp = (cp << 6) | (tail & 0x3F);
+    }
+    if ((extra == 1 && cp < 0x80) || (extra == 2 && cp < 0x800) || (extra == 3 && cp < 0x10000)
+        || cp > 0x10FFFF || (cp >= 0xD800 && cp <= 0xDFFF)) { *codePoint = lead; *offset = i + 1; return false; }
+    *codePoint = cp; *offset = i + extra + 1; return true;
+}
+static int ui3dsSystemGlyphWidth(u32 cp)
+{
+    if (!systemFont || cp < 0x80) return fontWidth[(u8)(cp < 0x80 ? cp : '?')];
+    return fontGlyphIndexFromCodePoint(systemFont, cp) < 0 ? fontWidth[(u8)'?'] : cjkGlyphAdvance;
+}
+static u8 ui3dsReadSystemGlyphPixel(const u8 *sheet, int width, int x, int y)
+{
+    int bit = (x&1)+(((x>>1)&1)*4)+(((x>>2)&1)*16)+((x>>3)*64)
+            +((y&1)*2)+(((y>>1)&1)*8)+(((y>>2)&1)*32)+((y>>3)*width*8);
+    return (sheet[bit>>1] >> ((bit&1)*4)) & 0x0F;
+}
+static int ui3dsDrawSystemGlyph(uint16 *fb, int x, int y, int color, u32 cp)
+{
+    if (!systemFont || cp < 0x80) return 0;
+    int glyph = fontGlyphIndexFromCodePoint(systemFont, cp);
+    TGLP_s *tglp = fontGetGlyphInfo(systemFont);
+    if (glyph < 0 || !tglp || tglp->sheetFmt != GPU_A4 || !tglp->sheetData
+        || !tglp->nRows || !tglp->nLines || !tglp->cellWidth || !tglp->cellHeight) return 0;
+    charWidthInfo_s *info = fontGetCharWidthInfo(systemFont, glyph);
+    if (!info || !info->glyphWidth) return 0;
+    int perSheet = tglp->nRows * tglp->nLines, sheetIndex = glyph / perSheet;
+    if (sheetIndex >= tglp->nSheets) return 0;
+    int idx = glyph % perSheet;
+    int srcX = (idx % tglp->nRows) * (tglp->cellWidth + 1) + 1;
+    int srcY = (idx / tglp->nRows) * (tglp->cellHeight + 1) + 1;
+    const u8 *sheet = (const u8 *)fontGetGlyphSheetTex(systemFont, sheetIndex);
+    if (!sheet) return 0;
+    for (int dy=0; dy<fontHeight; ++dy) for (int dx=0; dx<cjkGlyphWidth; ++dx) {
+        int px=x+dx, py=y+dy;
+        if (px<viewportX1 || px>=viewportX2 || py<viewportY1 || py>=viewportY2) continue;
+        int sx=srcX+dx*info->glyphWidth/cjkGlyphWidth, sy=srcY+dy*tglp->cellHeight/fontHeight;
+        int alpha=(ui3dsReadSystemGlyphPixel(sheet,tglp->sheetWidth,sx,sy)*MAX_ALPHA+7)/15;
+        if (!alpha) continue;
+        ui3dsSetPixelInline(fb,px,py,alpha==MAX_ALPHA ? color
+            : ui3dsApplyAlphaToColour565(color,alpha)
+             + ui3dsApplyAlphaToColour565(ui3dsGetPixelInline(fb,px,py),MAX_ALPHA-alpha));
+    }
+    return cjkGlyphAdvance;
+}
+
 //---------------------------------------------------------------
 // Computes width of the string
 //---------------------------------------------------------------
 int ui3dsGetStringWidth(const char *s, int startPos = 0, int endPos = 0xffff)
 {
-    int totalWidth = 0;
-    for (int i = startPos; i <= endPos; i++)
-    {
-        uint8 c = s[i];
-        if (c == 0)
-            break;
-
-        // check utf8 char is chinese
-        if(fontGBK != NULL && i <= endPos - 2 && (c & 0xF0) == 0xE0) {
-            uint8 c2 = s[i + 1];
-            uint8 c3 = s[i + 2];
-
-            uint16 chUtf8 = ((c & 0x0F) << 12)
-                | ((c2 & 0x3F) << 6)
-                | ((c3 & 0x3F));
-            uint16 chGBK = getGbkChar(chUtf8);
-
-            uint8 cg1 = (chGBK & 0xFF00) >> 8;
-            uint8 cg2 = (chGBK & 0x00FF);
-
-            if(cg1 >= gbkRowStart && cg1 <= gbkRowEnd
-                && cg2 >= gbkColStart && cg2 <= gbkColEnd) {
-                totalWidth += 12;
-                i += 2;
-                continue;
+    int width = 0, length = strlen(s);
+    for (int i = startPos; i <= endPos && i < length; ) {
+        uint8 c = (uint8)s[i];
+        if (!c) break;
+        if (c >= 0x80) {
+            u32 cp; int next = i;
+            if (ui3dsDecodeUtf8At(s,length,&next,&cp)) {
+                uint16 gbk = cp <= 0xFFFF ? getGbkChar((uint16)cp) : 0;
+                uint8 hi=gbk>>8, lo=gbk&0xFF;
+                if (fontGBK && hi>=gbkRowStart && hi<=gbkRowEnd && lo>=gbkColStart && lo<=gbkColEnd)
+                    width += cjkGlyphAdvance;
+                else width += ui3dsSystemGlyphWidth(cp);
+                i=next; continue;
             }
         }
-
-        totalWidth += fontWidth[c];
+        width += fontWidth[c]; ++i;
     }
-    return totalWidth;
+    return width;
 }
 
 #define CONVERT_TO_565(x)    (((x & 0xf8) >> 3) | (((x >> 8) & 0xf8) << 3) | (((x >> 16) & 0xf8) << 8))
@@ -581,49 +632,33 @@ void ui3dsDrawRect(int x0, int y0, int x1, int y1)
 //---------------------------------------------------------------
 void ui3dsDrawStringOnly(uint16 *fb, int absoluteX, int absoluteY, int color, const char *buffer, int startPos = 0, int endPos = 0xffff)
 {
-    int x = absoluteX;
-    int y = absoluteY;
-
-    if (color < 0)
-        return;
-    if (y >= viewportY1 - 16 && y <= viewportY2)
-    {
-        color = CONVERT_TO_565(color);
-        for (int i = startPos; i <= endPos; i++)
-        {
-            uint8 c = buffer[i];
-            if (c == 0)
-                break;
-
-            // check utf8 char is chinese
-            if(fontGBK != NULL && i <= endPos - 2 && (c & 0xF0) == 0xE0) {
-                uint8 c2 = buffer[i + 1];
-                uint8 c3 = buffer[i + 2];
-
-                uint16 chUtf8 = ((c & 0x0F) << 12)
-                    | ((c2 & 0x3F) << 6)
-                    | ((c3 & 0x3F));
-                uint16 chGBK = getGbkChar(chUtf8);
-
-                uint8 cg1 = (chGBK & 0xFF00) >> 8;
-                uint8 cg2 = (chGBK & 0x00FF);
-
-                if(cg1 >= gbkRowStart && cg1 <= gbkRowEnd
-                    && cg2 >= gbkColStart && cg2 <= gbkColEnd) {
-                    ui3dsDrawGBK(fb, x, y, color, chGBK);
-                    x += 12;
-                    i += 2;
-                    continue;
+    int x=absoluteX, y=absoluteY;
+    if (color<0 || y<viewportY1-16 || y>viewportY2) return;
+    color=CONVERT_TO_565(color);
+    int length=strlen(buffer);
+    for (int i=startPos; i<=endPos && i<length; ) {
+        uint8 c=(uint8)buffer[i];
+        if (!c) break;
+        if (c>=0x80) {
+            u32 cp; int next=i;
+            if (ui3dsDecodeUtf8At(buffer,length,&next,&cp)) {
+                uint16 gbk=cp<=0xFFFF ? getGbkChar((uint16)cp) : 0;
+                uint8 hi=gbk>>8, lo=gbk&0xFF;
+                int advance;
+                if (fontGBK && hi>=gbkRowStart && hi<=gbkRowEnd && lo>=gbkColStart && lo<=gbkColEnd) {
+                    ui3dsDrawGBK(fb,x,y,color,gbk);
+                    advance=cjkGlyphAdvance;
+                } else {
+                    advance=ui3dsDrawSystemGlyph(fb,x,y,color,cp);
+                    if (advance<=0) advance=fontWidth[(u8)'?'];
                 }
+                x += advance; i=next; continue;
             }
-
-            if (c != 32)
-                ui3dsDrawChar(fb, x, y, color, c);
-            x += fontWidth[c];
         }
+        if (c!=32) ui3dsDrawChar(fb,x,y,color,c);
+        x+=fontWidth[c]; ++i;
     }
 }
-
 
 //---------------------------------------------------------------
 // Draws a string with the forecolor, with wrapping
@@ -666,27 +701,16 @@ void ui3dsDrawStringWithWrapping(int x0, int y0, int x1, int y1, int color, int 
                 }
             }
 
-            // check utf8 char is chinese
-            if((buffer[i] & 0xF0) == 0xE0 && i <= slen - 2) {
-                uint8 c2 = buffer[i + 1];
-                uint8 c3 = buffer[i + 2];
-
-                uint16 chUtf8 = ((buffer[i] & 0x0F) << 12)
-                    | ((c2 & 0x3F) << 6)
-                    | ((c3 & 0x3F));
-                uint16 chGBK = getGbkChar(chUtf8);
-
-                uint8 cg1 = (chGBK & 0xFF00) >> 8;
-                uint8 cg2 = (chGBK & 0x00FF);
-
-                if(cg1 >= gbkRowStart && cg1 <= gbkRowEnd
-                    && cg2 >= gbkColStart && cg2 <= gbkColEnd) {
-                    lineWidth += 12;
-                    i += 2;
-                } else
-                    lineWidth += fontWidth[buffer[i]];
-            } else
-                lineWidth += fontWidth[buffer[i]];
+            if ((uint8)buffer[i] >= 0x80) {
+                u32 cp; int next=i;
+                if (ui3dsDecodeUtf8At(buffer,slen,&next,&cp)) {
+                    uint16 gbk=cp<=0xFFFF ? getGbkChar((uint16)cp) : 0;
+                    uint8 hi=gbk>>8, lo=gbk&0xFF;
+                    lineWidth += (fontGBK && hi>=gbkRowStart && hi<=gbkRowEnd && lo>=gbkColStart && lo<=gbkColEnd)
+                        ? cjkGlyphAdvance : ui3dsSystemGlyphWidth(cp);
+                    i=next-1;
+                } else lineWidth += fontWidth[(uint8)buffer[i]];
+            } else lineWidth += fontWidth[(uint8)buffer[i]];
 
             if (lineWidth > maxWidth)
             {
