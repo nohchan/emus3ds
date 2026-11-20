@@ -11,8 +11,8 @@
 #define	WIN32_LEAN_AND_MEAN
 #include <math.h>
 
-#include "typedef.h"
-#include "macro.h"
+#include "TypeDef.h"
+#include "Macro.h"
 
 #include "APU_INTERNAL.h"
 #include "APU_VRC6.h"

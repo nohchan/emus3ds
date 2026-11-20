@@ -4,7 +4,7 @@
 #define	WIN32_LEAN_AND_MEAN
 #include <stdio.h>
 #include <stdlib.h>
-#include "Typedef.h"
+#include "TypeDef.h"
 
 
 #define	ERRORSTRING_MAX	32

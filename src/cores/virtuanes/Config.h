@@ -8,11 +8,11 @@
 #include <string>
 using namespace std;
 
-#include <windows.h>
-#include "extsoundfile.h"
+#include "Windows.h"
+#include "ExtSoundFile.h"
 
-#include "typedef.h"
-#include "macro.h"
+#include "TypeDef.h"
+#include "Macro.h"
 
 class	CCfgPath
 {

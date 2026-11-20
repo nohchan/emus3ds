@@ -1,0 +1,44 @@
+name: Build 3DS emulators
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build ${{ matrix.name }}
+    runs-on: ubuntu-latest
+    container:
+      image: devkitpro/devkitarm:latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: VirtuaNES
+            makefile: virtuanes-make
+            output: virtuanes_3ds
+          - name: TemperPCE
+            makefile: temperpce-make
+            output: temperpce_3ds
+          - name: PicoDrive
+            makefile: picodrive-make
+            output: picodrive_3ds
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Build .3dsx and .cia
+        run: make -j2 -f "${{ matrix.makefile }}" cia
+
+      - name: Upload .3dsx and .cia
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.output }}
+          path: |
+            ${{ matrix.output }}.3dsx
+            ${{ matrix.output }}.cia
+          if-no-files-found: error
