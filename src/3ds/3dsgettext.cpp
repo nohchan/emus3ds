@@ -102,7 +102,46 @@ namespace
 		std::sprintf(path, "romfs:/locale/%s/emus3ds.mo", language_);
 
 		FILE *file = fopen(path, "rb");
-		if (file == NULL) return;
+		if (file == NULL) {
+			// romfsに.moファイルが無い場合でも主要UIを英語化する
+			s_translations["选项"] = "Options";
+			s_translations["选择 ROM"] = "Select ROM";
+			s_translations["选择ROM"] = "Select ROM";
+			s_translations["  语言"] = "  Language";
+			s_translations["选择应用程序显示的语言"] = "Select the language for the UI";
+			s_translations["  主题"] = "  Theme";
+			s_translations["选择应用于界面的主题"] = "Select the theme for the UI";
+			s_translations["  字体"] = "  Font";
+			s_translations["用于用户界面的字体(仅适用于ASCII字符)"] = "Font for UI (ASCII characters only)";
+			s_translations["  退出"] = "  Exit";
+			s_translations["退出"] = "Exit";
+			s_translations["立即退出?"] = "Exit now?";
+			s_translations["原始"] = "Original";
+			s_translations["暗黑模式"] = "Dark Mode";
+			s_translations["否"] = "No";
+			s_translations["是"] = "Yes";
+			s_translations["确定"] = "OK";
+			s_translations["A:选择  B:取消  X+上/下:翻页"] = "A:Select  B:Back  X+Up/Down:Page";
+			s_translations["模拟器"] = "Emulator";
+			s_translations["设置"] = "Settings";
+			s_translations["控制"] = "Controls";
+			s_translations["金手指"] = "Cheats";
+			s_translations["加载 ROM"] = "Load ROM";
+			s_translations["加载中... 请稍后."] = "Loading... Please wait.";
+			s_translations["无法加载 ROM."] = "Unable to load ROM.";
+			s_translations["保存设置到SD卡..."] = "Saving settings to SD card...";
+			s_translations["即时存档"] = "Save State";
+			s_translations["自动保存..."] = "Auto-saving...";
+			s_translations["自动保存失败"] = "Auto-save failed";
+			s_translations["自动保存失败.\n强制加载?"] = "Auto-save failed.\nForce load?";
+			s_translations["截屏"] = "Screenshot";
+			s_translations["开始截屏...\n请稍后."] = "Taking screenshot...\nPlease wait.";
+			s_translations["截屏时发生错误!"] = "Error taking screenshot!";
+			s_translations["重置控制台"] = "Reset Console";
+			s_translations["确定吗?"] = "Are you sure?";
+			return;
+		}
+
 
 		std::uint32_t magic;
 		if (!read(file, magic, true))

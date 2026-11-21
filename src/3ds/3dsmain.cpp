@@ -20,7 +20,7 @@
 #include "3dsmenu.h"
 #include "3dsui.h"
 #include "3dsfont.h"
-#include "3dsgbk.h"
+// 削除: #include "3dsgbk.h"
 #include "3dsconfig.h"
 #include "3dsfiles.h"
 #include "3dsinput.h"
@@ -1075,8 +1075,8 @@ int main()
 
     ui3dsSetFont(settings3DS.Font, true);
     ui3dsSetLanguage(settings3DS.Language, true);
-    gbk3dsLoadGBKImage();
     menuSelectFile();
+
 
     while (aptMainLoop()) {
         switch (emulator.emulatorState) {
