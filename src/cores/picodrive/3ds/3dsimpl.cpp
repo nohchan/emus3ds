@@ -355,7 +355,7 @@ const char *impl3dsTitleImage = "romfs:/picodrive_3ds_top.png";
 // The title that displays at the bottom right of the
 // menu.
 //---------------------------------------------------------
-const char *impl3dsTitleText = "PicoDrive for 3DS v0.96R";
+const char *impl3dsTitleText = "PicoDrive 3DS v0.96R";
 
 
 //---------------------------------------------------------
@@ -1213,7 +1213,7 @@ bool impl3dsReadWriteSettingsByGame(bool writeMode)
 //----------------------------------------------------------------------
 bool impl3dsReadWriteSettingsGlobal(bool writeMode)
 {
-    bool success = config3dsOpenFile("/emus3ds/picodrive_3ds.cfg", writeMode);
+    bool success = config3dsOpenFile("/3ds/picodrive_3ds/picodrive_3ds.cfg", writeMode);
     if (!success)
         return false;
 
