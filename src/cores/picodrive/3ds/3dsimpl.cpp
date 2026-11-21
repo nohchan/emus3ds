@@ -597,13 +597,13 @@ void impl3dsOutputSoundSamples(int numberOfSamples, short *leftSamples, short *r
 
 
 static const char * const biosfiles_us[] = {
-	"sdmc:/emus3ds/picodrive_3ds/bios/us_scd2_9306.bin", "sdmc:/emus3ds/picodrive_3ds/bios/SegaCDBIOS9303.bin", "sdmc:/emus3ds/picodrive_3ds/bios/us_scd1_9210.bin", "sdmc:/emus3ds/picodrive_3ds/bios/bios_CD_U.bin"
+	"sdmc:/3ds/picodrive_3ds/bios/us_scd2_9306.bin", "sdmc:/3ds/picodrive_3ds/bios/SegaCDBIOS9303.bin", "sdmc:/3ds/picodrive_3ds/bios/us_scd1_9210.bin", "sdmc:/3ds/picodrive_3ds/bios/bios_CD_U.bin"
 };
 static const char * const biosfiles_eu[] = {
-	"sdmc:/emus3ds/picodrive_3ds/bios/eu_mcd2_9306.bin", "sdmc:/emus3ds/picodrive_3ds/bios/eu_mcd2_9303.bin", "sdmc:/emus3ds/picodrive_3ds/bios/eu_mcd1_9210.bin", "sdmc:/emus3ds/picodrive_3ds/bios/bios_CD_E.bin"
+	"sdmc:/3ds/picodrive_3ds/bios/eu_mcd2_9306.bin", "sdmc:/3ds/picodrive_3ds/bios/eu_mcd2_9303.bin", "sdmc:/3ds/picodrive_3ds/bios/eu_mcd1_9210.bin", "sdmc:/3ds/picodrive_3ds/bios/bios_CD_E.bin"
 };
 static const char * const biosfiles_jp[] = {
-	"sdmc:/emus3ds/picodrive_3ds/bios/jp_mcd2_921222.bin", "sdmc:/emus3ds/picodrive_3ds/bios/jp_mcd1_9112.bin", "sdmc:/emus3ds/picodrive_3ds/bios/jp_mcd1_9111.bin", "sdmc:/emus3ds/picodrive_3ds/bios/bios_CD_J.bin"
+	"sdmc:/3ds/picodrive_3ds/bios/jp_mcd2_921222.bin", "sdmc:/3ds/picodrive_3ds/bios/jp_mcd1_9112.bin", "sdmc:/3ds/picodrive_3ds/bios/jp_mcd1_9111.bin", "sdmc:/3ds/picodrive_3ds/bios/bios_CD_J.bin"
 };
 
 static const char *find_bios(int *region, const char *cd_fname)
@@ -674,7 +674,7 @@ bool impl3dsLoadROM(char *romFilePath)
     // ** Load ROM
     PicoPatchUnload();
 	enum media_type_e media_type;
-	media_type = PicoLoadMedia(romFilePath, "/emus3ds/picodrive_3ds/carthw.cfg", find_bios, NULL);
+	media_type = PicoLoadMedia(romFilePath, "/3ds/picodrive_3ds/carthw.cfg", find_bios, NULL);
 
     PicoSetInputDevice(0, PICO_INPUT_PAD_6BTN);
     PicoSetInputDevice(1, PICO_INPUT_PAD_6BTN);
