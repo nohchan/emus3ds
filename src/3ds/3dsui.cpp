@@ -169,16 +169,14 @@ void ui3dsSetTheme(int themeIndex)
 //---------------------------------------------------------------
 void ui3dsSetLanguage(int langIndex, bool init)
 {
+    settings3DS.Language = 1;
     if (!init)
     {
-        if (langIndex >= 0 && langIndex < 2)
-        {
-            settings3DS.Language = langIndex;
-            impl3dsReadWriteSettingsGlobal(true);
-        }
+        impl3dsReadWriteSettingsGlobal(true);
     }
     setLanguage("en_US");
 }
+
 
 //---------------------------------------------------------------
 // Sets the global viewport for all drawing
