@@ -710,6 +710,9 @@ NESHEADER	header;
 	} else if( header.ID[0] == 'F' && header.ID[1] == 'D'
 		&& header.ID[2] == 'S' && header.ID[3] == 0x1A ) {
 		return	0;
+	} else if( header.ID[0] == 0x01 && header.ID[1] == '*'
+		&& header.ID[2] == 'N' && header.ID[3] == 'I' ) {
+		return	0;
 	} else if( header.ID[0] == 'N' && header.ID[1] == 'E'
 		&& header.ID[2] == 'S' && header.ID[3] == 'M') {
 		return	0;
