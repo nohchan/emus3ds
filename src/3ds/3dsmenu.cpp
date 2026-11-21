@@ -340,7 +340,7 @@ void menu3dsDrawMenu(int menuItemFrame, int translateY)
     }
 
     ui3dsDrawStringWithNoWrapping(10, 223, 285, 240, Themes[settings3DS.Theme].menuBottomBarTextColor,
-        HALIGN_LEFT, "A:Select  B:Back  X:Page");
+        HALIGN_LEFT, "A:Select B:Back X:Page");
     ui3dsDrawStringWithNoWrapping(10 + widthAdjust, 223, 285 + widthAdjust, 240,
         Themes[settings3DS.Theme].menuBottomBarTextColor, HALIGN_RIGHT, impl3dsTitleText);
 

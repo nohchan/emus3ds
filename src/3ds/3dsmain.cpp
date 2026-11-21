@@ -11,6 +11,7 @@
 #include <3ds.h>
 
 #include <dirent.h>
+#include <sys/stat.h>
 
 #include "3dstypes.h"
 #include "3dsexit.h"
@@ -733,6 +734,10 @@ void emulatorInitialize()
     emulator.waitBehavior = 0;
 
     file3dsInitialize();
+    mkdir("/3ds", 0777);
+    mkdir("/3ds/virtuanes_3ds", 0777);
+    mkdir("/3ds/picodrive_3ds", 0777);
+    mkdir("/3ds/temperpce_3ds", 0777);
 
     romFileNameLastSelected[0] = 0;
 
