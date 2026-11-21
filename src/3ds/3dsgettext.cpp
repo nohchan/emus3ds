@@ -121,7 +121,7 @@ namespace
 			s_translations["否"] = "No";
 			s_translations["是"] = "Yes";
 			s_translations["确定"] = "OK";
-			s_translations["A:选择  B:取消  X+上/下:翻页"] = "A:Select  B:Back  X+Up/Down:Page";
+			s_translations["A:选择  B:取消  X+上/下:翻页"] = "A:Select B:Back X:Page";
 			s_translations["模拟器"] = "Emulator";
 			s_translations["设置"] = "Settings";
 			s_translations["控制"] = "Controls";
@@ -139,6 +139,8 @@ namespace
 			s_translations["截屏时发生错误!"] = "Error taking screenshot!";
 			s_translations["重置控制台"] = "Reset Console";
 			s_translations["确定吗?"] = "Are you sure?";
+			s_translations["无此游戏可用的金手指."] = "No cheats available for this game.";
+			s_translations["此游戏没有可用的金手指."] = "No cheats available for this game.";
 			return;
 		}
 
