@@ -483,7 +483,7 @@ LONG	FileSize;
 
 			// DISKSYSTEM BIOSのロード
 			//string	Path = CPathlib::MakePathExt( CApp::GetModulePath(), "DISKSYS", "ROM" );
-			string Path = "/emus3ds/virtuanes_3ds/bios/disksys.rom";
+			string Path = "/3ds/virtuanes_3ds/bios/disksys.rom";
 
 			if( !(fp = fopen( Path.c_str(), "rb" )) ) {
 				// DISKSYS.ROMがありません
