@@ -1,19 +1,19 @@
 //
-// CRCƒ`ƒFƒbƒN—pƒ‰ƒCƒuƒ‰ƒŠƒNƒ‰ƒX
+// CRCãƒã‚§ãƒƒã‚¯ç”¨ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚¯ãƒ©ã‚¹
 //
 #define	WIN32_LEAN_AND_MEAN
-#include <windows.h>
+#include "Windows.h"
 #include <limits.h>
 
 class	CRC
 {
 public:
 	static	DWORD	Crc( INT size, LPBYTE c );
-	static	DWORD	CrcRev( INT size, LPBYTE c );	// ‹t‡
+	static	DWORD	CrcRev( INT size, LPBYTE c );	// é€†é †
 
 protected:
 	static	void	MakeTable();
-	static	void	MakeTableRev();	// ‹t‡
+	static	void	MakeTableRev();	// é€†é †
 
 	static	BOOL	m_Init;
 	static	BOOL	m_InitRev;

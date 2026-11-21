@@ -1,7 +1,7 @@
 #include "VirtuaNESres.h"
 
 #include "Config.h"
-#include "extsoundfile.h"
+#include "ExtSoundFile.h"
 
 // Global instance
 CConfig	Config;

@@ -26,6 +26,7 @@ const char * file3dsReplaceFilenameExtension (char *fileName, const char *extens
 // Gets the current directory.
 //----------------------------------------------------------------------
 char *file3dsGetCurrentDir(void);
+void file3dsSetCurrentDir(const char *dir);
 
 
 //----------------------------------------------------------------------

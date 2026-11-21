@@ -49,25 +49,24 @@ bool                swapBuffer = true;
 // Common options
 //-------------------------------------------------------
 SMenuItem optionsForNoYes[] = {
-    MENU_MAKE_ACTION(0, getText("否")),
-    MENU_MAKE_ACTION(1, getText("是")),
+    MENU_MAKE_ACTION(0, getText("No")),
+    MENU_MAKE_ACTION(1, getText("Yes")),
     MENU_MAKE_LASTITEM  ()
 };
 
 SMenuItem optionsForOk[] = {
-    MENU_MAKE_ACTION(0, getText("确定")),
+    MENU_MAKE_ACTION(0, getText("OK")),
     MENU_MAKE_LASTITEM  ()
 };
 
 SMenuItem optionsForLanguage[] = {
-    MENU_MAKE_DIALOG_ACTION (0, "简体中文",            ""),
     MENU_MAKE_DIALOG_ACTION (1, "English",            ""),
     MENU_MAKE_LASTITEM  ()
 };
 
 SMenuItem optionsForTheme[] = {
-    MENU_MAKE_DIALOG_ACTION (0, getText("原始"),                ""),
-    MENU_MAKE_DIALOG_ACTION (1, getText("暗黑模式"),            ""),
+    MENU_MAKE_DIALOG_ACTION (0, getText("Original"),            ""),
+    MENU_MAKE_DIALOG_ACTION (1, getText("Dark Mode"),           ""),
     MENU_MAKE_LASTITEM  ()
 };
 
@@ -341,7 +340,7 @@ void menu3dsDrawMenu(int menuItemFrame, int translateY)
     }
 
     ui3dsDrawStringWithNoWrapping(10, 223, 285, 240, Themes[settings3DS.Theme].menuBottomBarTextColor,
-        HALIGN_LEFT, getText("A:选择  B:取消  X+上/下:翻页"));
+        HALIGN_LEFT, "A:Select B:Back X:Page");
     ui3dsDrawStringWithNoWrapping(10 + widthAdjust, 223, 285 + widthAdjust, 240,
         Themes[settings3DS.Theme].menuBottomBarTextColor, HALIGN_RIGHT, impl3dsTitleText);
 

@@ -6,7 +6,7 @@
 //                                               last modify ----/--/-- //
 //////////////////////////////////////////////////////////////////////////
 #include "APU_MMC5.h"
-#include "state.h"
+#include "State.h"
 
 #define	RECTANGLE_VOL_SHIFT	8
 #define	DAOUT_VOL_SHIFT		6

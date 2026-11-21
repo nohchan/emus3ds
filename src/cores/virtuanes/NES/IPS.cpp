@@ -1,10 +1,10 @@
-#include "Typedef.h"
+#include "TypeDef.h"
 #include "App.h"
 #include "Pathlib.h"
 #include "Config.h"
 
 //#include "unzip.h"
-#include "ips.h"
+#include "IPS.h"
 
 #include <vector>
 using namespace std;

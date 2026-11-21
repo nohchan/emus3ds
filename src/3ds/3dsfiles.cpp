@@ -14,7 +14,8 @@
 
 #include "3dstypes.h"
 #include "3dsfiles.h"
-#include "3dsutf8togbk.h"
+// 削除: #include "3dsutf8togbk.h"
+
 
 
 static char currentDir[_MAX_PATH] = "";
@@ -141,6 +142,26 @@ const char * file3dsReplaceFilenameExtension (char *fileName, const char *extens
 char *file3dsGetCurrentDir(void)
 {
     return currentDir;
+}
+
+void file3dsSetCurrentDir(const char *dir)
+{
+    if (!dir || dir[0] == 0)
+        return;
+
+    DIR *d = opendir(dir);
+    if (d)
+    {
+        closedir(d);
+        strncpy(currentDir, dir, _MAX_PATH - 1);
+        currentDir[_MAX_PATH - 1] = 0;
+        int len = strlen(currentDir);
+        if (len > 0 && currentDir[len - 1] != '/' && len < _MAX_PATH - 1)
+        {
+            currentDir[len] = '/';
+            currentDir[len + 1] = 0;
+        }
+    }
 }
 
 
@@ -284,24 +305,13 @@ std::vector<std::string> file3dsGetFiles(const char *extensions, int maxFiles)
         closedir(d);
     }
 
-    std::sort(dirs.begin(), dirs.end(), [&](const std::string& a, const std::string& b) {
-        std::string mappedA = mapGBKToInitial(a);
-        std::string mappedB = mapGBKToInitial(b);
-        return mappedA.compare(mappedB) < 0;
-    });
-
-    std::sort(tmps.begin(), tmps.end(), [&](const std::string& a, const std::string& b) {
-        std::string mappedA = mapGBKToInitial(a);
-        std::string mappedB = mapGBKToInitial(b);
-        return mappedA.compare(mappedB) < 0;
-    });
+    std::sort(dirs.begin(), dirs.end());
+    std::sort(tmps.begin(), tmps.end());
 
     files.insert(files.end(), dirs.begin(), dirs.end());
     files.insert(files.end(), tmps.begin(), tmps.end());
     dirs.clear();
     tmps.clear();
-
-    // std::sort(files.begin(), files.end());
 
     return files;
 }

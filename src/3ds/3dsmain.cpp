@@ -11,6 +11,7 @@
 #include <3ds.h>
 
 #include <dirent.h>
+#include <sys/stat.h>
 
 #include "3dstypes.h"
 #include "3dsexit.h"
@@ -184,6 +185,10 @@ bool emulatorLoadRom()
 
         return false;
     }
+
+    // 最後に開いたフォルダとROM名を .cfg に保存する
+    emulatorSettingsSave(true, false, false);
+
     impl3dsApplyAllSettings();
 
     if (settings3DS.AutoSavestate)
@@ -729,6 +734,14 @@ void emulatorInitialize()
     emulator.waitBehavior = 0;
 
     file3dsInitialize();
+    mkdir("/3ds", 0777);
+    mkdir("/3ds/virtuanes_3ds", 0777);
+    mkdir("/3ds/virtuanes_3ds/bios", 0777);
+    mkdir("/3ds/picodrive_3ds", 0777);
+    mkdir("/3ds/picodrive_3ds/bios", 0777);
+    mkdir("/3ds/temperpce_3ds", 0777);
+    mkdir("/3ds/temperpce_3ds/syscards", 0777);
+
 
     romFileNameLastSelected[0] = 0;
 
@@ -776,6 +789,13 @@ void emulatorInitialize()
 
     // Do this one more time.
     if (file3dsGetCurrentDir()[0] == 0)
+        file3dsInitialize();
+
+    // 読み込んだDirが存在しない場合はルートに戻す
+    DIR *d = opendir(file3dsGetCurrentDir());
+    if (d)
+        closedir(d);
+    else
         file3dsInitialize();
 
     srvInit();

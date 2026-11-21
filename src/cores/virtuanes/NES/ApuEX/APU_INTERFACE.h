@@ -9,10 +9,10 @@
 #define	__APU_INTERFACE_INCLUDED__
 
 #define	WIN32_LEAN_AND_MEAN
-#include "windows.h"
+#include "Windows.h"
 
-#include "typedef.h"
-#include "macro.h"
+#include "TypeDef.h"
+#include "Macro.h"
 
 #define	APU_CLOCK		1789772.5f
 
@@ -20,23 +20,23 @@
 #define	INT2FIX(x)	((x)<<16)
 #define	FIX2INT(x)	((x)>>16)
 
-// APUƒCƒ“ƒ^[ƒtƒF[ƒX’ŠÛƒNƒ‰ƒX
+// APUã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹æŠ½è±¡ã‚¯ãƒ©ã‚¹
 class	APU_INTERFACE
 {
 public:
-	// í‚ÉŽÀ‘•‚ð—v‹‚³‚ê‚é‚à‚Ì
+	// å¸¸ã«å®Ÿè£…ã‚’è¦æ±‚ã•ã‚Œã‚‹ã‚‚ã®
 	virtual	void	Reset( FLOAT fClock, INT nRate ) = 0;
 	virtual	void	Setup( FLOAT fClock, INT nRate ) = 0;
 	virtual	void	Write( WORD addr, BYTE data ) = 0;
 	virtual	INT	Process( INT channel ) = 0;
 
-	// ƒIƒvƒVƒ‡ƒ“‚ÅŽÀ‘•‚·‚é
+	// ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã§å®Ÿè£…ã™ã‚‹
 	virtual	BYTE	Read ( WORD addr ) { return (BYTE)(addr>>8); }
 
 	virtual	void	WriteSync( WORD addr, BYTE data ) {}
 	virtual	BYTE	ReadSync ( WORD addr ) { return 0; }
 	virtual	void	VSync() {}
-	virtual	BOOL	Sync( INT cycles ) { return FALSE; }	// IRQ‚ð”­¶‚·‚éŽžTRUE‚ð•Ô‚·
+	virtual	BOOL	Sync( INT cycles ) { return FALSE; }	// IRQã‚’ç™ºç”Ÿã™ã‚‹æ™‚TRUEã‚’è¿”ã™
 
 	virtual	INT	GetFreq( INT channel ) { return 0; }
 

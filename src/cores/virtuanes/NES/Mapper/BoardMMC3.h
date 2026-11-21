@@ -1,19 +1,19 @@
-#include <windows.h>
+#include <Windows.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "typedef.h"
-#include "macro.h"
+#include "TypeDef.h"
+#include "Macro.h"
 
-#include "nes.h"
-#include "mmu.h"
-#include "cpu.h"
-#include "ppu.h"
-#include "apu.h"
-#include "pad.h"
-#include "rom.h"
+#include "Nes.h"
+#include "MMU.h"
+#include "CPU.h"
+#include "PPU.h"
+#include "APU.h"
+#include "PAD.h"
+#include "ROM.h"
 
-#include "mapper.h"
+#include "Mapper.h"
 
 #include "Config.h"
 

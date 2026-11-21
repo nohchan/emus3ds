@@ -6,13 +6,13 @@
 //                                               last modify ----/--/-- //
 //////////////////////////////////////////////////////////////////////////
 #define	WIN32_LEAN_AND_MEAN
-#include <windows.h>
+#include <Windows.h>
 #include <stdio.h>
 #include <stdlib.h>
 //#include <mbstring.h>
 
-#include "typedef.h"
-#include "macro.h"
+#include "TypeDef.h"
+#include "Macro.h"
 
 #include "VirtuaNESres.h"
 
@@ -24,12 +24,12 @@
 
 //#include "Archive.h"
 
-#include "rom.h"
-#include "romdb.h"
-#include "mmu.h"
-#include "mapper.h"
+#include "ROM.h"
+#include "ROMDB.h"
+#include "MMU.h"
+#include "Mapper.h"
 
-#include "ips.h"
+#include "IPS.h"
 #include "3dsdbg.h"
 
 const char* img_fname;	//for bbk
@@ -483,7 +483,7 @@ LONG	FileSize;
 
 			// DISKSYSTEM BIOSのロード
 			//string	Path = CPathlib::MakePathExt( CApp::GetModulePath(), "DISKSYS", "ROM" );
-			string Path = "/emus3ds/virtuanes_3ds/bios/disksys.rom";
+			string Path = "/3ds/virtuanes_3ds/bios/disksys.rom";
 
 			if( !(fp = fopen( Path.c_str(), "rb" )) ) {
 				// DISKSYS.ROMがありません
@@ -709,6 +709,9 @@ NESHEADER	header;
 		return	0;
 	} else if( header.ID[0] == 'F' && header.ID[1] == 'D'
 		&& header.ID[2] == 'S' && header.ID[3] == 0x1A ) {
+		return	0;
+	} else if( header.ID[0] == 0x01 && header.ID[1] == '*'
+		&& header.ID[2] == 'N' && header.ID[3] == 'I' ) {
 		return	0;
 	} else if( header.ID[0] == 'N' && header.ID[1] == 'E'
 		&& header.ID[2] == 'S' && header.ID[3] == 'M') {

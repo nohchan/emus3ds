@@ -6,7 +6,7 @@
 //                                               last modify ----/--/-- //
 //////////////////////////////////////////////////////////////////////////
 #include "APU_N106.h"
-#include "state.h"
+#include "State.h"
 
 #define	CHANNEL_VOL_SHIFT	6
 
