@@ -57,92 +57,92 @@ SSettings3DS settings3DS;
 //----------------------------------------------------------------------
 
 SMenuItem optionsForScreenSwap[] = {
-    MENU_MAKE_DIALOG_ACTION (0, getText("上屏幕"),               ""),
-    MENU_MAKE_DIALOG_ACTION (1, getText("下屏幕"),               ""),
+    MENU_MAKE_DIALOG_ACTION (0, getText("Top Screen"),               ""),
+    MENU_MAKE_DIALOG_ACTION (1, getText("Bottom Screen"),            ""),
     MENU_MAKE_LASTITEM  ()
 };
 
 SMenuItem optionsForStretch[] = {
-    MENU_MAKE_DIALOG_ACTION (0, getText("不拉伸"),               getText("点对点")),
-    MENU_MAKE_DIALOG_ACTION (1, getText("适配4:3"),              getText("拉伸到320x240")),
-    MENU_MAKE_DIALOG_ACTION (2, getText("全屏"),                 getText("拉伸到全屏幕")),
-    MENU_MAKE_DIALOG_ACTION (3, getText("裁剪适配4:3"),          getText("裁剪并拉伸到320x240")),
-    MENU_MAKE_DIALOG_ACTION (4, getText("裁剪全屏"),             getText("裁剪并拉伸到全屏幕")),
+    MENU_MAKE_DIALOG_ACTION (0, getText("No Stretch"),               getText("Pixel-perfect")),
+    MENU_MAKE_DIALOG_ACTION (1, getText("Fit 4:3"),                  getText("Stretch to 320x240")),
+    MENU_MAKE_DIALOG_ACTION (2, getText("Fullscreen"),               getText("Stretch to full screen")),
+    MENU_MAKE_DIALOG_ACTION (3, getText("Crop & Fit 4:3"),           getText("Crop & stretch to 320x240")),
+    MENU_MAKE_DIALOG_ACTION (4, getText("Crop & Fullscreen"),        getText("Crop & stretch to full screen")),
     MENU_MAKE_LASTITEM  ()
 };
 
 SMenuItem optionsForFrameskip[] = {
-    MENU_MAKE_DIALOG_ACTION (0, getText("关闭"),              ""),
-    MENU_MAKE_DIALOG_ACTION (1, getText("开启 (最高1帧)"),    ""),
-    MENU_MAKE_DIALOG_ACTION (2, getText("开启 (最高2帧)"),    ""),
-    MENU_MAKE_DIALOG_ACTION (3, getText("开启 (最高3帧)"),    ""),
-    MENU_MAKE_DIALOG_ACTION (4, getText("开启 (最高4帧)"),    ""),
+    MENU_MAKE_DIALOG_ACTION (0, getText("Disabled"),              ""),
+    MENU_MAKE_DIALOG_ACTION (1, getText("Enabled (max 1 frame)"), ""),
+    MENU_MAKE_DIALOG_ACTION (2, getText("Enabled (max 2 frames)"),""),
+    MENU_MAKE_DIALOG_ACTION (3, getText("Enabled (max 3 frames)"),""),
+    MENU_MAKE_DIALOG_ACTION (4, getText("Enabled (max 4 frames)"),""),
     MENU_MAKE_LASTITEM  ()
 };
 
 SMenuItem optionsForFrameRate[] = {
-    MENU_MAKE_DIALOG_ACTION (0, getText("ROM默认"),     ""),
-    MENU_MAKE_DIALOG_ACTION (1, "50 FPS",      ""),
-    MENU_MAKE_DIALOG_ACTION (2, "60 FPS",      ""),
+    MENU_MAKE_DIALOG_ACTION (0, getText("Default based on ROM"),  ""),
+    MENU_MAKE_DIALOG_ACTION (1, "50 FPS",                         ""),
+    MENU_MAKE_DIALOG_ACTION (2, "60 FPS",                         ""),
     MENU_MAKE_LASTITEM  ()
 };
 
 SMenuItem optionsForAutoSaveSRAMDelay[] = {
-    MENU_MAKE_DIALOG_ACTION (1, getText("1秒"),    ""),
-    MENU_MAKE_DIALOG_ACTION (2, getText("10秒"),   ""),
-    MENU_MAKE_DIALOG_ACTION (3, getText("60秒"),   ""),
-    MENU_MAKE_DIALOG_ACTION (4, getText("关闭"),   getText("点触下屏幕保存")),
+    MENU_MAKE_DIALOG_ACTION (1, getText("1 second"),    ""),
+    MENU_MAKE_DIALOG_ACTION (2, getText("10 seconds"),  ""),
+    MENU_MAKE_DIALOG_ACTION (3, getText("60 seconds"),  ""),
+    MENU_MAKE_DIALOG_ACTION (4, getText("Disabled"),    getText("Touch bottom screen to save")),
     MENU_MAKE_LASTITEM  ()
 };
 
 SMenuItem optionsForTurboFire[] = {
-    MENU_MAKE_DIALOG_ACTION (0, getText("无"),         ""),
-    MENU_MAKE_DIALOG_ACTION (10, getText("最慢"),      ""),
-    MENU_MAKE_DIALOG_ACTION (8, getText("更慢"),       ""),
-    MENU_MAKE_DIALOG_ACTION (6, getText("慢"),         ""),
-    MENU_MAKE_DIALOG_ACTION (4, getText("快"),         ""),
-    MENU_MAKE_DIALOG_ACTION (2, getText("更快"),       ""),
-    MENU_MAKE_DIALOG_ACTION (1, getText("特快"),       ""),
+    MENU_MAKE_DIALOG_ACTION (0, getText("None"),         ""),
+    MENU_MAKE_DIALOG_ACTION (10, getText("Slowest"),     ""),
+    MENU_MAKE_DIALOG_ACTION (8, getText("Slower"),       ""),
+    MENU_MAKE_DIALOG_ACTION (6, getText("Slow"),         ""),
+    MENU_MAKE_DIALOG_ACTION (4, getText("Fast"),         ""),
+    MENU_MAKE_DIALOG_ACTION (2, getText("Faster"),       ""),
+    MENU_MAKE_DIALOG_ACTION (1, getText("Fastest"),      ""),
     MENU_MAKE_LASTITEM  ()
 };
 
 SMenuItem optionsForButtons[] = {
-    MENU_MAKE_DIALOG_ACTION (0,                 getText("无"),             ""),
-    MENU_MAKE_DIALOG_ACTION (IO_BUTTON_I,       getText("I键"),            ""),
-    MENU_MAKE_DIALOG_ACTION (IO_BUTTON_II,      getText("II键"),           ""),
-    MENU_MAKE_DIALOG_ACTION (IO_BUTTON_III,     getText("III键"),          ""),
-    MENU_MAKE_DIALOG_ACTION (IO_BUTTON_IV,      getText("IV键"),           ""),
-    MENU_MAKE_DIALOG_ACTION (IO_BUTTON_V,       getText("V键"),            ""),
-    MENU_MAKE_DIALOG_ACTION (IO_BUTTON_VI,      getText("VI键"),           ""),
-    MENU_MAKE_DIALOG_ACTION (IO_BUTTON_SELECT,  getText("PCE SELECT键"),   ""),
-    MENU_MAKE_DIALOG_ACTION (IO_BUTTON_RUN,     getText("PCE RUN键"),      ""),
+    MENU_MAKE_DIALOG_ACTION (0,                 getText("None"),               ""),
+    MENU_MAKE_DIALOG_ACTION (IO_BUTTON_I,       getText("I Button"),           ""),
+    MENU_MAKE_DIALOG_ACTION (IO_BUTTON_II,      getText("II Button"),          ""),
+    MENU_MAKE_DIALOG_ACTION (IO_BUTTON_III,     getText("III Button"),         ""),
+    MENU_MAKE_DIALOG_ACTION (IO_BUTTON_IV,      getText("IV Button"),          ""),
+    MENU_MAKE_DIALOG_ACTION (IO_BUTTON_V,       getText("V Button"),           ""),
+    MENU_MAKE_DIALOG_ACTION (IO_BUTTON_VI,      getText("VI Button"),          ""),
+    MENU_MAKE_DIALOG_ACTION (IO_BUTTON_SELECT,  getText("PCE SELECT Button"),  ""),
+    MENU_MAKE_DIALOG_ACTION (IO_BUTTON_RUN,     getText("PCE RUN Button"),     ""),
     MENU_MAKE_LASTITEM  ()
 };
 
 SMenuItem optionsFor3DSButtons[] = {
-    MENU_MAKE_DIALOG_ACTION (0,                 getText("无"),          ""),
-    MENU_MAKE_DIALOG_ACTION (KEY_A,             getText("3DS A键"),     ""),
-    MENU_MAKE_DIALOG_ACTION (KEY_B,             getText("3DS B键"),     ""),
-    MENU_MAKE_DIALOG_ACTION (KEY_X,             getText("3DS X键"),     ""),
-    MENU_MAKE_DIALOG_ACTION (KEY_Y,             getText("3DS Y键"),     ""),
-    MENU_MAKE_DIALOG_ACTION (KEY_L,             getText("3DS L键"),     ""),
-    MENU_MAKE_DIALOG_ACTION (KEY_R,             getText("3DS R键"),     ""),
-    MENU_MAKE_DIALOG_ACTION (KEY_ZL,            getText("New3DS ZL键"), ""),
-    MENU_MAKE_DIALOG_ACTION (KEY_ZR,            getText("New3DS ZR键"), ""),
+    MENU_MAKE_DIALOG_ACTION (0,                 getText("None"),              ""),
+    MENU_MAKE_DIALOG_ACTION (KEY_A,             getText("3DS A Button"),     ""),
+    MENU_MAKE_DIALOG_ACTION (KEY_B,             getText("3DS B Button"),     ""),
+    MENU_MAKE_DIALOG_ACTION (KEY_X,             getText("3DS X Button"),     ""),
+    MENU_MAKE_DIALOG_ACTION (KEY_Y,             getText("3DS Y Button"),     ""),
+    MENU_MAKE_DIALOG_ACTION (KEY_L,             getText("3DS L Button"),     ""),
+    MENU_MAKE_DIALOG_ACTION (KEY_R,             getText("3DS R Button"),     ""),
+    MENU_MAKE_DIALOG_ACTION (KEY_ZL,            getText("New3DS ZL Button"), ""),
+    MENU_MAKE_DIALOG_ACTION (KEY_ZR,            getText("New3DS ZR Button"), ""),
     MENU_MAKE_LASTITEM  ()
 };
 
 SMenuItem optionsForIdleLoopPatch[] =
 {
-    MENU_MAKE_DIALOG_ACTION (1, getText("开启"),             getText("较快运行但可能会出现卡死")),
-    MENU_MAKE_DIALOG_ACTION (0, getText("关闭"),             getText("较慢运行以换取更高兼容性")),
+    MENU_MAKE_DIALOG_ACTION (1, getText("Enabled"),              getText("Faster but may cause freezes")),
+    MENU_MAKE_DIALOG_ACTION (0, getText("Disabled"),             getText("Slower for higher compatibility")),
     MENU_MAKE_LASTITEM  ()
 };
 
 SMenuItem optionsForCPUCore[] =
 {
-    MENU_MAKE_DIALOG_ACTION (1, getText("快速"),              getText("更快速,采用高度优化的CPU核心")),
-    MENU_MAKE_DIALOG_ACTION (2, getText("兼容"),              getText("更高兼容性,采用较慢的CPU核心")),
+    MENU_MAKE_DIALOG_ACTION (1, getText("Fast"),                 getText("Faster, highly optimized CPU core")),
+    MENU_MAKE_DIALOG_ACTION (2, getText("Compatible"),           getText("Higher compatibility, slower CPU core")),
     MENU_MAKE_LASTITEM  ()
 };
 
@@ -156,133 +156,125 @@ SMenuItem optionsForBIOS[] =
     MENU_MAKE_LASTITEM  ()
 };
 
-
 SMenuItem optionsForPaletteFix[] =
 {
-    MENU_MAKE_DIALOG_ACTION (0, getText("开启"),       getText("最好效果但更慢速")),
-    MENU_MAKE_DIALOG_ACTION (1, getText("关闭"),       getText("最快速度但不精确")),
+    MENU_MAKE_DIALOG_ACTION (0, getText("Enabled"),        getText("Best quality, slightly slower")),
+    MENU_MAKE_DIALOG_ACTION (1, getText("Disabled"),       getText("Fastest speed, less accurate")),
     MENU_MAKE_LASTITEM  ()
 };
 
 
 SMenuItem optionMenu[] = {
-    MENU_MAKE_HEADER1   (getText("全局设置")),
-    MENU_MAKE_PICKER    (24000, getText("  语言"), getText("选择应用程序显示的语言"), &optionsForLanguage, DIALOG_TYPE_INFO),
-    MENU_MAKE_PICKER    (11000, getText("  屏幕比例"), getText("您希望屏幕以何种方式显示?"), optionsForStretch, DIALOG_TYPE_INFO),
-    MENU_MAKE_PICKER    (25000, getText("  线性过滤"), getText("是否启用线性过滤,会稍微增加模糊效果,\n当屏幕比例设置为\"不拉伸\"时无效"), &optionsForNoYes, DIALOG_TYPE_INFO),
-    MENU_MAKE_PICKER    (23000, getText("  主题"), getText("选择应用于界面的主题"), &optionsForTheme, DIALOG_TYPE_INFO),
-    MENU_MAKE_PICKER    (18000, getText("  字体"), getText("用于用户界面的字体(仅适用于ASCII字符)"), &optionsForFont, DIALOG_TYPE_INFO),
-    MENU_MAKE_PICKER    (15000, getText("  游戏显示屏幕"), getText("选择使用上屏或下屏进行游玩"), optionsForScreenSwap, DIALOG_TYPE_INFO),
-    MENU_MAKE_CHECKBOX  (15001, getText("  隐藏副屏幕的文本"), 0),
-    MENU_MAKE_CHECKBOX  (12003, getText("  禁用3D调节杆"), 0),
+    MENU_MAKE_HEADER1   (getText("GLOBAL SETTINGS")),
+    MENU_MAKE_PICKER    (24000, getText("  Language"), getText("Select the language for the UI"), &optionsForLanguage, DIALOG_TYPE_INFO),
+    MENU_MAKE_PICKER    (11000, getText("  Screen Stretch"), getText("How would you like the final screen to appear?"), optionsForStretch, DIALOG_TYPE_INFO),
+    MENU_MAKE_PICKER    (25000, getText("  Linear Filtering"), getText("Enable linear filtering (adds slight blur).\nIgnored when Screen Stretch is 'No Stretch'."), &optionsForNoYes, DIALOG_TYPE_INFO),
+    MENU_MAKE_PICKER    (23000, getText("  Theme"), getText("Select the theme for the UI"), &optionsForTheme, DIALOG_TYPE_INFO),
+    MENU_MAKE_PICKER    (18000, getText("  Font"), getText("Font for UI (ASCII characters only)"), &optionsForFont, DIALOG_TYPE_INFO),
+    MENU_MAKE_PICKER    (15000, getText("  Game Screen"), getText("Select top or bottom screen for gameplay"), optionsForScreenSwap, DIALOG_TYPE_INFO),
+    MENU_MAKE_CHECKBOX  (15001, getText("  Hide text on secondary screen"), 0),
+    MENU_MAKE_CHECKBOX  (12003, getText("  Disable 3D slider"), 0),
     MENU_MAKE_DISABLED  (""),
-    MENU_MAKE_CHECKBOX  (12002, getText("  退出时自动保存即时存档并在启动时自动加载"), 0),
+    MENU_MAKE_CHECKBOX  (12002, getText("  Auto-save state on exit & auto-load on start"), 0),
     MENU_MAKE_DISABLED  (""),
-    MENU_MAKE_HEADER1   (getText("游戏设置")),
-    MENU_MAKE_PICKER    (22000, getText("  CPU核心"), getText("游戏出现卡死时可选择原生CPU核心"), optionsForCPUCore, DIALOG_TYPE_INFO),
-    MENU_MAKE_PICKER    (20000, getText("  空闲态循环补丁"), getText("改变此项配置后需重启ROM"), optionsForIdleLoopPatch, DIALOG_TYPE_INFO),
-    MENU_MAKE_PICKER    (10000, getText("  跳帧"), getText("跳帧可以加快游戏速度,但可能会导致画面不平滑"), optionsForFrameskip, DIALOG_TYPE_INFO),
-    MENU_MAKE_PICKER    (21000, "  BIOS", getText("BIOS文件必须放置在根目录的 /emus3ds/temperpce_3ds/syscards 文件夹. 改变此项配置后将重启ROM"), optionsForBIOS, DIALOG_TYPE_INFO),
-    MENU_MAKE_PICKER    (16000, getText("  调色板修复"), getText("可尝试更改此项,若游戏画面中某些颜色不正确"), optionsForPaletteFix, DIALOG_TYPE_INFO),
+    MENU_MAKE_HEADER1   (getText("GAME SETTINGS")),
+    MENU_MAKE_PICKER    (22000, getText("  CPU Core"), getText("Select compatible CPU core if game freezes"), optionsForCPUCore, DIALOG_TYPE_INFO),
+    MENU_MAKE_PICKER    (20000, getText("  Idle Loop Patch"), getText("Requires ROM restart after changing this setting"), optionsForIdleLoopPatch, DIALOG_TYPE_INFO),
+    MENU_MAKE_PICKER    (10000, getText("  Frameskip"), getText("Skipping frames increases speed at the cost of smoothness"), optionsForFrameskip, DIALOG_TYPE_INFO),
+    MENU_MAKE_PICKER    (21000, "  BIOS", getText("BIOS files must be placed in /emus3ds/temperpce_3ds/syscards.\nChanging this will restart the ROM."), optionsForBIOS, DIALOG_TYPE_INFO),
+    MENU_MAKE_PICKER    (16000, getText("  Palette Fix"), getText("Try changing this if colors look wrong in-game"), optionsForPaletteFix, DIALOG_TYPE_INFO),
     MENU_MAKE_DISABLED  (""),
-    MENU_MAKE_HEADER1   (getText("音频")),
-    MENU_MAKE_CHECKBOX  (50002, getText("  将音量设置应用于所有游戏"), 0),
-    MENU_MAKE_GAUGE     (14000, getText("  音量扩增"), 0, 8, 4),
+    MENU_MAKE_HEADER1   (getText("AUDIO")),
+    MENU_MAKE_CHECKBOX  (50002, getText("  Apply volume to all games"), 0),
+    MENU_MAKE_GAUGE     (14000, getText("  Volume Amplification"), 0, 8, 4),
     MENU_MAKE_LASTITEM  ()
 };
-
 
 SMenuItem controlsMenu[] = {
-    MENU_MAKE_HEADER1   (getText("按键设置")),
-    MENU_MAKE_CHECKBOX  (50000, getText("  为所有游戏映射按键"), 0),
-    MENU_MAKE_CHECKBOX  (50001, getText("  为所有游戏映射连发按键"), 0),
+    MENU_MAKE_HEADER1   (getText("BUTTON CONFIGURATION")),
+    MENU_MAKE_CHECKBOX  (50000, getText("  Apply button mappings to all games"), 0),
+    MENU_MAKE_CHECKBOX  (50001, getText("  Apply rapid fire settings to all games"), 0),
     MENU_MAKE_DISABLED  (""),
-    MENU_MAKE_HEADER2   (getText("3DS A键")),
-    MENU_MAKE_PICKER    (13010, getText("  映射到"), "", optionsForButtons, DIALOG_TYPE_INFO),
-    MENU_MAKE_PICKER    (13020, getText("  映射到"), "", optionsForButtons, DIALOG_TYPE_INFO),
-    MENU_MAKE_GAUGE     (13000, getText("  连发速度"), 0, 10, 0),
+    MENU_MAKE_HEADER2   (getText("3DS A Button")),
+    MENU_MAKE_PICKER    (13010, getText("  Maps to"), "", optionsForButtons, DIALOG_TYPE_INFO),
+    MENU_MAKE_PICKER    (13020, getText("  Maps to"), "", optionsForButtons, DIALOG_TYPE_INFO),
+    MENU_MAKE_GAUGE     (13000, getText("  Rapid-Fire Speed"), 0, 10, 0),
     MENU_MAKE_DISABLED  (""),
-    MENU_MAKE_HEADER2   (getText("3DS B键")),
-    MENU_MAKE_PICKER    (13011, getText("  映射到"), "", optionsForButtons, DIALOG_TYPE_INFO),
-    MENU_MAKE_PICKER    (13021, getText("  映射到"), "", optionsForButtons, DIALOG_TYPE_INFO),
-    MENU_MAKE_GAUGE     (13001, getText("  连发速度"), 0, 10, 0),
+    MENU_MAKE_HEADER2   (getText("3DS B Button")),
+    MENU_MAKE_PICKER    (13011, getText("  Maps to"), "", optionsForButtons, DIALOG_TYPE_INFO),
+    MENU_MAKE_PICKER    (13021, getText("  Maps to"), "", optionsForButtons, DIALOG_TYPE_INFO),
+    MENU_MAKE_GAUGE     (13001, getText("  Rapid-Fire Speed"), 0, 10, 0),
     MENU_MAKE_DISABLED  (""),
-    MENU_MAKE_HEADER2   (getText("3DS X键")),
-    MENU_MAKE_PICKER    (13012, getText("  映射到"), "", optionsForButtons, DIALOG_TYPE_INFO),
-    MENU_MAKE_PICKER    (13022, getText("  映射到"), "", optionsForButtons, DIALOG_TYPE_INFO),
-    MENU_MAKE_GAUGE     (13002, getText("  连发速度"), 0, 10, 0),
+    MENU_MAKE_HEADER2   (getText("3DS X Button")),
+    MENU_MAKE_PICKER    (13012, getText("  Maps to"), "", optionsForButtons, DIALOG_TYPE_INFO),
+    MENU_MAKE_PICKER    (13022, getText("  Maps to"), "", optionsForButtons, DIALOG_TYPE_INFO),
+    MENU_MAKE_GAUGE     (13002, getText("  Rapid-Fire Speed"), 0, 10, 0),
     MENU_MAKE_DISABLED  (""),
-    MENU_MAKE_HEADER2   (getText("3DS Y键")),
-    MENU_MAKE_PICKER    (13013, getText("  映射到"), "", optionsForButtons, DIALOG_TYPE_INFO),
-    MENU_MAKE_PICKER    (13023, getText("  映射到"), "", optionsForButtons, DIALOG_TYPE_INFO),
-    MENU_MAKE_GAUGE     (13003, getText("  连发速度"), 0, 10, 0),
+    MENU_MAKE_HEADER2   (getText("3DS Y Button")),
+    MENU_MAKE_PICKER    (13013, getText("  Maps to"), "", optionsForButtons, DIALOG_TYPE_INFO),
+    MENU_MAKE_PICKER    (13023, getText("  Maps to"), "", optionsForButtons, DIALOG_TYPE_INFO),
+    MENU_MAKE_GAUGE     (13003, getText("  Rapid-Fire Speed"), 0, 10, 0),
     MENU_MAKE_DISABLED  (""),
-    MENU_MAKE_HEADER2   (getText("3DS L键")),
-    MENU_MAKE_PICKER    (13014, getText("  映射到"), "", optionsForButtons, DIALOG_TYPE_INFO),
-    MENU_MAKE_PICKER    (13024, getText("  映射到"), "", optionsForButtons, DIALOG_TYPE_INFO),
-    MENU_MAKE_GAUGE     (13004, getText("  连发速度"), 0, 10, 0),
+    MENU_MAKE_HEADER2   (getText("3DS L Button")),
+    MENU_MAKE_PICKER    (13014, getText("  Maps to"), "", optionsForButtons, DIALOG_TYPE_INFO),
+    MENU_MAKE_PICKER    (13024, getText("  Maps to"), "", optionsForButtons, DIALOG_TYPE_INFO),
+    MENU_MAKE_GAUGE     (13004, getText("  Rapid-Fire Speed"), 0, 10, 0),
     MENU_MAKE_DISABLED  (""),
-    MENU_MAKE_HEADER2   (getText("3DS R键")),
-    MENU_MAKE_PICKER    (13015, getText("  映射到"), "", optionsForButtons, DIALOG_TYPE_INFO),
-    MENU_MAKE_PICKER    (13025, getText("  映射到"), "", optionsForButtons, DIALOG_TYPE_INFO),
-    MENU_MAKE_GAUGE     (13005, getText("  连发速度"), 0, 10, 0),
+    MENU_MAKE_HEADER2   (getText("3DS R Button")),
+    MENU_MAKE_PICKER    (13015, getText("  Maps to"), "", optionsForButtons, DIALOG_TYPE_INFO),
+    MENU_MAKE_PICKER    (13025, getText("  Maps to"), "", optionsForButtons, DIALOG_TYPE_INFO),
+    MENU_MAKE_GAUGE     (13005, getText("  Rapid-Fire Speed"), 0, 10, 0),
     MENU_MAKE_DISABLED  (""),
-    MENU_MAKE_HEADER2   (getText("New3DS ZL键")),
-    MENU_MAKE_PICKER    (13016, getText("  映射到"), "", optionsForButtons, DIALOG_TYPE_INFO),
-    MENU_MAKE_PICKER    (13026, getText("  映射到"), "", optionsForButtons, DIALOG_TYPE_INFO),
-    MENU_MAKE_GAUGE     (13006, getText("  连发速度"), 0, 10, 0),
+     MENU_MAKE_HEADER2   (getText("New3DS ZL Button")),
+    MENU_MAKE_PICKER    (13016, getText("  Maps to"), "", optionsForButtons, DIALOG_TYPE_INFO),
+    MENU_MAKE_PICKER    (13026, getText("  Maps to"), "", optionsForButtons, DIALOG_TYPE_INFO),
+    MENU_MAKE_GAUGE     (13006, getText("  Rapid-Fire Speed"), 0, 10, 0),
     MENU_MAKE_DISABLED  (""),
-    MENU_MAKE_HEADER2   (getText("New3DS ZR键")),
-    MENU_MAKE_PICKER    (13017, getText("  映射到"), "", optionsForButtons, DIALOG_TYPE_INFO),
-    MENU_MAKE_PICKER    (13027, getText("  映射到"), "", optionsForButtons, DIALOG_TYPE_INFO),
-    MENU_MAKE_GAUGE     (13007, getText("  连发速度"), 0, 10, 0),
+    MENU_MAKE_HEADER2   (getText("New3DS ZR Button")),
+    MENU_MAKE_PICKER    (13017, getText("  Maps to"), "", optionsForButtons, DIALOG_TYPE_INFO),
+    MENU_MAKE_PICKER    (13027, getText("  Maps to"), "", optionsForButtons, DIALOG_TYPE_INFO),
+    MENU_MAKE_GAUGE     (13007, getText("  Rapid-Fire Speed"), 0, 10, 0),
     MENU_MAKE_DISABLED  (""),
-    MENU_MAKE_HEADER2   (getText("3DS SELECT键")),
-    MENU_MAKE_PICKER    (13018, getText("  映射到"), "", optionsForButtons, DIALOG_TYPE_INFO),
-    MENU_MAKE_PICKER    (13028, getText("  映射到"), "", optionsForButtons, DIALOG_TYPE_INFO),
+    MENU_MAKE_HEADER2   (getText("3DS SELECT Button")),
+    MENU_MAKE_PICKER    (13018, getText("  Maps to"), "", optionsForButtons, DIALOG_TYPE_INFO),
+    MENU_MAKE_PICKER    (13028, getText("  Maps to"), "", optionsForButtons, DIALOG_TYPE_INFO),
     MENU_MAKE_DISABLED  (""),
-    MENU_MAKE_HEADER2   (getText("3DS START键")),
-    MENU_MAKE_PICKER    (13019, getText("  映射到"), "", optionsForButtons, DIALOG_TYPE_INFO),
-    MENU_MAKE_PICKER    (13029, getText("  映射到"), "", optionsForButtons, DIALOG_TYPE_INFO),
+    MENU_MAKE_HEADER2   (getText("3DS START Button")),
+    MENU_MAKE_PICKER    (13019, getText("  Maps to"), "", optionsForButtons, DIALOG_TYPE_INFO),
+    MENU_MAKE_PICKER    (13029, getText("  Maps to"), "", optionsForButtons, DIALOG_TYPE_INFO),
     MENU_MAKE_DISABLED  (""),
-    MENU_MAKE_HEADER1   (getText("模拟器功能设置")),
-    MENU_MAKE_CHECKBOX  (50003, getText("为所有游戏应用映射"), 0),
-    MENU_MAKE_PICKER    (23001, getText("打开模拟器菜单"), "", optionsFor3DSButtons, DIALOG_TYPE_INFO),
-    MENU_MAKE_PICKER    (23002, getText("快进"), "", optionsFor3DSButtons, DIALOG_TYPE_INFO),
-    MENU_MAKE_DISABLED  (getText("  (在New3DS上效果更好. 可能会导致游戏卡死或出错.)")),
+    MENU_MAKE_HEADER1   (getText("EMULATOR FUNCTIONS")),
+    MENU_MAKE_CHECKBOX  (50003, getText("Apply hotkeys to all games"), 0),
+    MENU_MAKE_PICKER    (23001, getText("Open Emulator Menu"), "", optionsFor3DSButtons, DIALOG_TYPE_INFO),
+    MENU_MAKE_PICKER    (23002, getText("Fast Forward"), "", optionsFor3DSButtons, DIALOG_TYPE_INFO),
+    MENU_MAKE_DISABLED  (getText("  (Works better on New3DS. May cause glitches.)")),
     MENU_MAKE_LASTITEM  ()
 };
 
-
-//-------------------------------------------------------
-// Standard in-game emulator menu.
-// You should not modify those menu items that are
-// marked 'do not modify'.
-//-------------------------------------------------------
 SMenuItem emulatorMenu[] = {
-    MENU_MAKE_HEADER2   (getText("模拟器")),               // Do not modify
-    MENU_MAKE_ACTION    (1000, getText("  返回游戏")),    // Do not modify
+    MENU_MAKE_HEADER2   (getText("EMULATOR")),               // Do not modify
+    MENU_MAKE_ACTION    (1000, getText("  Resume Game")),    // Do not modify
     MENU_MAKE_HEADER2   (""),
 
-    MENU_MAKE_HEADER2   (getText("即时存档")),
-    MENU_MAKE_ACTION    (2001, getText("  保存存档位 #1")),   // Do not modify
-    MENU_MAKE_ACTION    (2002, getText("  保存存档位 #2")),   // Do not modify
-    MENU_MAKE_ACTION    (2003, getText("  保存存档位 #3")),   // Do not modify
-    MENU_MAKE_ACTION    (2004, getText("  保存存档位 #4")),   // Do not modify
-    MENU_MAKE_ACTION    (2005, getText("  保存存档位 #5")),   // Do not modify
+    MENU_MAKE_HEADER2   (getText("SAVE STATES")),
+    MENU_MAKE_ACTION    (2001, getText("  Save Slot #1")),   // Do not modify
+    MENU_MAKE_ACTION    (2002, getText("  Save Slot #2")),   // Do not modify
+    MENU_MAKE_ACTION    (2003, getText("  Save Slot #3")),   // Do not modify
+    MENU_MAKE_ACTION    (2004, getText("  Save Slot #4")),   // Do not modify
+    MENU_MAKE_ACTION    (2005, getText("  Save Slot #5")),   // Do not modify
     MENU_MAKE_HEADER2   (""),
 
-    MENU_MAKE_ACTION    (3001, getText("  加载存档位 #1")),   // Do not modify
-    MENU_MAKE_ACTION    (3002, getText("  加载存档位 #2")),   // Do not modify
-    MENU_MAKE_ACTION    (3003, getText("  加载存档位 #3")),   // Do not modify
-    MENU_MAKE_ACTION    (3004, getText("  加载存档位 #4")),   // Do not modify
-    MENU_MAKE_ACTION    (3005, getText("  加载存档位 #5")),   // Do not modify
+    MENU_MAKE_ACTION    (3001, getText("  Load Slot #1")),   // Do not modify
+    MENU_MAKE_ACTION    (3002, getText("  Load Slot #2")),   // Do not modify
+    MENU_MAKE_ACTION    (3003, getText("  Load Slot #3")),   // Do not modify
+    MENU_MAKE_ACTION    (3004, getText("  Load Slot #4")),   // Do not modify
+    MENU_MAKE_ACTION    (3005, getText("  Load Slot #5")),   // Do not modify
     MENU_MAKE_HEADER2   (""),
 
-    MENU_MAKE_HEADER2   (getText("其他")),                 // Do not modify
-    MENU_MAKE_ACTION    (4001, getText("  截屏")),// Do not modify
-    MENU_MAKE_ACTION    (5001, getText("  重置控制台")),  // Do not modify
-    MENU_MAKE_ACTION    (6001, getText("  退出")),           // Do not modify
+    MENU_MAKE_HEADER2   (getText("OTHERS")),                 // Do not modify
+    MENU_MAKE_ACTION    (4001, getText("  Take Screenshot")),// Do not modify
+    MENU_MAKE_ACTION    (5001, getText("  Reset Console")),  // Do not modify
+    MENU_MAKE_ACTION    (6001, getText("  Exit")),           // Do not modify
     MENU_MAKE_LASTITEM  ()
 };
 
@@ -1054,7 +1046,7 @@ void impl3dsEmulationPaused()
     int widthAdjust = screenSettings.GameScreen == GFX_TOP ? 0 : 40;
 
     ui3dsDrawRect(50 + widthAdjust, 140, 270 + widthAdjust, 154, 0x000000);
-    ui3dsDrawStringWithNoWrapping(50 + widthAdjust, 140, 270 + widthAdjust, 154, 0x3f7fff, HALIGN_CENTER, getText("正在保存SRAM到SD卡..."));
+    ui3dsDrawStringWithNoWrapping(50 + widthAdjust, 140, 270 + widthAdjust, 154, 0x3f7fff, HALIGN_CENTER, getText("Saving SRAM to SD card..."));
 
     char path_name[MAX_PATH];
     //if(cd.uses_bram)
@@ -1151,7 +1143,7 @@ bool impl3dsOnMenuSelectedChanged(int ID, int value)
             config.cd_system_type = CD_SYSTEM_TYPE_GECD;
 
         menu3dsHideDialog();
-        int result = menu3dsShowDialog(getText("CD-ROM BIOS 更换成功"), getText("要立即重置控制台吗?"), Themes[settings3DS.Theme].dialogColorWarn, optionsForNoYes);
+        int result = menu3dsShowDialog(getText("CD-ROM BIOS Changed"), getText("Reset console now?"), Themes[settings3DS.Theme].dialogColorWarn, optionsForNoYes);
         menu3dsHideDialog();
 
         if (result == 1)
