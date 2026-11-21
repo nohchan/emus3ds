@@ -31,12 +31,17 @@ jobs:
       - name: Check out source
         uses: actions/checkout@v6
 
-      - name: Build .3dsx
-        run: make -j2 -f "${{ matrix.makefile }}" build
+      - name: Grant execute permission to makerom
+        run: chmod +x ./makerom/linux_x86_64/makerom
 
-      - name: Upload .3dsx
+      - name: Build .3dsx and .cia
+        run: make -j2 -f "${{ matrix.makefile }}" all
+
+      - name: Upload .3dsx and .cia
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.output }}
-          path: ${{ matrix.output }}.3dsx
+          path: |
+            ${{ matrix.output }}.3dsx
+            ${{ matrix.output }}.cia
           if-no-files-found: error
