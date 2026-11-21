@@ -736,8 +736,12 @@ void emulatorInitialize()
     file3dsInitialize();
     mkdir("/3ds", 0777);
     mkdir("/3ds/virtuanes_3ds", 0777);
+    mkdir("/3ds/virtuanes_3ds/bios", 0777);
     mkdir("/3ds/picodrive_3ds", 0777);
+    mkdir("/3ds/picodrive_3ds/bios", 0777);
     mkdir("/3ds/temperpce_3ds", 0777);
+    mkdir("/3ds/temperpce_3ds/syscards", 0777);
+
 
     romFileNameLastSelected[0] = 0;
 
