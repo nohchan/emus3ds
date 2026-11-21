@@ -476,7 +476,7 @@ int cdd_unload(void)
         if (Pico_mcd->cdda_type == CT_MP3)
           fclose(cdd.toc.tracks[i].fd);
         else
-          pm_close(cdd.toc.tracks[0].fd);
+          pm_close(cdd.toc.tracks[i].fd);
 
         /* detect single file images */
         if (cdd.toc.tracks[i+1].fd == cdd.toc.tracks[i].fd)
