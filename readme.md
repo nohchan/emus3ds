@@ -17,34 +17,42 @@
 
 <table>
   <tr>
-    <td width="50%" align="center"><img src="screenshots/nes_select.png" alt="nes_select" valign="bottom"></td>
-    <td width="50%" align="center"><img src="screenshots/nes_zelda.png" alt="Fds Zelda" valign="bottom"></td>
+    <td width="50%" align="center"><img src="screenshots/nes_select.png" alt="nes select" valign="bottom"></td>
+    <td width="50%" align="center"><img src="screenshots/nes_zelda.png" alt="fds zelda" valign="bottom"></td>
   </tr>
   <tr>
     <td valign="top" width="50%" align="center">日本語ファイル名 表示</td>
     <td valign="top" width="50%" align="center">ディスク システム起動</td>
   </tr>
   <tr><td colspan="2"></td></tr>
-  <tr></tr>
-  <tr>
  </table>
  <br>
     
-    ![alt tag](https://github.com/R-YaTian/emus3ds/blob/master/screenshots/VirtuaNES%20-%20Gradius%20II.bmp)
-
-![alt tag](https://github.com/R-YaTian/emus3ds/blob/master/screenshots/VirtuaNES%20-%20Kirby's%20Adventure.bmp)
-
 ## TemperPCE (TurboGrafx / PC-Engine) core
 
-![alt tag](https://github.com/R-YaTian/emus3ds/blob/master/screenshots/TemperPCE01.bmp)
-
-![alt tag](https://github.com/R-YaTian/emus3ds/blob/master/screenshots/TemperPCE04.bmp)
+<table>
+  <tr>
+    <td width="50%" align="center"><img src="screenshots/pce_r_type.png" alt="pce r_type" valign="bottom"></td>
+  </tr>
+  <tr>
+    <td valign="top" width="50%" align="center">日本語ファイル名 表示</td>
+  </tr>
+  <tr><td colspan="2"></td></tr>
+ </table>
+ <br>
 
 ## PicoDrive (Sega Master System / Mega Drive) core
 
-![alt tag](https://github.com/R-YaTian/emus3ds/blob/master/screenshots/PicoDrive01.bmp)
-
-![alt tag](https://github.com/R-YaTian/emus3ds/blob/master/screenshots/PicoDrive02.bmp)
+<table>
+  <tr>
+    <td width="50%" align="center"><img src="screenshots/md_hokuto.png" alt="md hokuto" valign="bottom"></td>
+  </tr>
+  <tr>
+    <td valign="top" width="50%" align="center">日本語ファイル名 表示</td>
+  </tr>
+  <tr><td colspan="2"></td></tr>
+ </table>
+ <br>
 
 
 ### Credits
