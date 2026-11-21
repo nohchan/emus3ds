@@ -671,8 +671,21 @@ void setSampleRate(bool preserveState)
 //---------------------------------------------------------
 bool impl3dsLoadROM(char *romFilePath)
 {
-    // ** Load ROM
+    // ** Unload previous ROM / CD and free memory completely
     PicoPatchUnload();
+    PicoExit();
+    PicoInit();
+    PicoDrawSetOutFormat(PDF_RGB555, 0);
+
+    PicoIn.opt = currentConfig.s_PicoOpt;
+    PicoIn.sndRate = currentConfig.s_PsndRate;
+    PicoIn.sndOut = sndBuffer;
+    PicoIn.sndVolumeMul = 100;
+    PicoIn.autoRgnOrder = currentConfig.s_PicoAutoRgnOrder;
+    if (ctr_svchack_successful)
+        PicoIn.opt |= POPT_EN_DRC;
+
+    // ** Load ROM
 	enum media_type_e media_type;
 	media_type = PicoLoadMedia(romFilePath, "/3ds/picodrive_3ds/carthw.cfg", find_bios, NULL);
 
