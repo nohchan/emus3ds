@@ -184,6 +184,19 @@ bool emulatorLoadRom()
 
         return false;
     }
+
+    // 最後に開いたフォルダを保存する
+    {
+        char lastDirPath[_MAX_PATH];
+        const char *slash = strrchr(impl3dsTitleImage, '/');
+        snprintf(lastDirPath, _MAX_PATH, "/emus3ds/%s.lastdir", slash ? slash + 1 : "default");
+        FILE *fp = fopen(lastDirPath, "w");
+        if (fp) {
+            fprintf(fp, "%s", file3dsGetCurrentDir());
+            fclose(fp);
+        }
+    }
+
     impl3dsApplyAllSettings();
 
     if (settings3DS.AutoSavestate)
@@ -777,6 +790,21 @@ void emulatorInitialize()
     // Do this one more time.
     if (file3dsGetCurrentDir()[0] == 0)
         file3dsInitialize();
+
+    // 前回開いていたフォルダがあれば復元する
+    {
+        char lastDirPath[_MAX_PATH];
+        const char *slash = strrchr(impl3dsTitleImage, '/');
+        snprintf(lastDirPath, _MAX_PATH, "/emus3ds/%s.lastdir", slash ? slash + 1 : "default");
+        FILE *fp = fopen(lastDirPath, "r");
+        if (fp) {
+            char savedDir[_MAX_PATH] = {0};
+            if (fgets(savedDir, _MAX_PATH - 1, fp)) {
+                file3dsSetCurrentDir(savedDir);
+            }
+            fclose(fp);
+        }
+    }
 
     srvInit();
 }

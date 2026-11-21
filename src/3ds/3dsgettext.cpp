@@ -121,7 +121,7 @@ namespace
 			s_translations["否"] = "No";
 			s_translations["是"] = "Yes";
 			s_translations["确定"] = "OK";
-			s_translations["A:选择  B:取消  X+上/下:翻页"] = "A:Select B:Back X:Page";
+			s_translations["A:选择  B:取消  X+上/下:翻页"] = "A:Select B:Back X+Up/Down:Page";
 			s_translations["模拟器"] = "Emulator";
 			s_translations["设置"] = "Settings";
 			s_translations["控制"] = "Controls";
