@@ -340,7 +340,7 @@ const char *impl3dsTitleImage = "romfs:/virtuanes_3ds_top.png";
 // The title that displays at the bottom right of the
 // menu.
 //---------------------------------------------------------
-const char *impl3dsTitleText = "VirtuaNES for 3DS v1.04R";
+const char *impl3dsTitleText = "VirtuaNES 3DS v1.04R";
 
 
 //---------------------------------------------------------
