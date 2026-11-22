@@ -521,6 +521,7 @@ bool impl3dsInitializeCore()
 void impl3dsFinalize()
 {
     // ** Finalize
+    aptSetHomeAllowed(true);
     PicoExit();
     video3dsFinalize();
 }
