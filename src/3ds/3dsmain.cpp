@@ -796,7 +796,7 @@ void emulatorInitialize()
     if (file3dsGetCurrentDir()[0] == 0)
         file3dsInitialize();
 
-    srvInit();
+//    srvInit();
 }
 
 
@@ -824,9 +824,9 @@ void emulatorFinalize()
     romfsExit();
     printf("STEP 5\n"); svcSleepThread(500000000LL);
 
-    hidExit();
-    aptExit();
-    srvExit();
+//    hidExit();
+//    aptExit();
+//    srvExit();
 }
 
 
