@@ -675,12 +675,14 @@ void setSampleRate(bool preserveState)
 //---------------------------------------------------------
 bool impl3dsLoadROM(char *romFilePath)
 {
-    // ** 前回がメガCDだった場合、MCDのメモリマップと先読みキャッシュを完全に解放・再初期化する
+    // ** 前回がメガCDだった場合、MCDを完全に終了して初期状態に戻す
     if (PicoIn.AHW & PAHW_MCD)
     {
         PicoExitMCD();
-        PicoInitMCD();
     }
+    PicoCartUnload();
+    PicoIn.AHW = 0;
+    PicoIn.quirks = 0;
     read_ahead_init(&cdda_read_ahead);
 
     // ** Load ROM
