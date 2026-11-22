@@ -24,11 +24,9 @@ PICO_INTERNAL void PicoInitMCD(void)
 PICO_INTERNAL void PicoExitMCD(void)
 {
   cdd_unload();
-  if (Pico_mcd != NULL) {
-    free(Pico_mcd);
-    Pico_mcd = NULL;
-  }
+  memset(Pico_mcd, 0, sizeof(*Pico_mcd));
 }
+
 
 PICO_INTERNAL void PicoPowerMCD(void)
 {
