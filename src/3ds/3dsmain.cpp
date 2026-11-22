@@ -832,13 +832,16 @@ void emulatorFinalize()
 #endif
     gpu3dsFinalize();
 
-#ifndef EMU_RELEASE
-    printf("ptmSysmExit:\n");
-#endif
-    ptmSysmExit();
+// ★ここをコメントアウト（初期化していないため）
+// #ifndef EMU_RELEASE
+//     printf("ptmSysmExit:\n");
+// #endif
+//     ptmSysmExit();
 
     disableAptHooks();
-    finalizeIRED();
+
+// ★ここをコメントアウト（ROM起動前だと initIRED() が呼ばれていないため）
+//     finalizeIRED();
 
 #ifndef EMU_RELEASE
     printf("romfsExit:\n");
