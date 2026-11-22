@@ -57,8 +57,10 @@ extern "C" void clearBottomScreen();
 
 extern "C" int YM2612Write_(unsigned int a, unsigned int v);
 extern int ctr_svchack_successful;
+extern "C" {
 #include "3dsfilereadahead.h"
 extern cd_read_ahead_struct cdda_read_ahead;
+}
 
 //----------------------------------------------------------------------
 // Settings
