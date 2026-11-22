@@ -57,6 +57,8 @@ extern "C" void clearBottomScreen();
 
 extern "C" int YM2612Write_(unsigned int a, unsigned int v);
 extern int ctr_svchack_successful;
+#include "3dsfilereadahead.h"
+extern cd_read_ahead_struct cdda_read_ahead;
 
 //----------------------------------------------------------------------
 // Settings
@@ -671,6 +673,14 @@ void setSampleRate(bool preserveState)
 //---------------------------------------------------------
 bool impl3dsLoadROM(char *romFilePath)
 {
+    // ** 前回がメガCDだった場合、MCDのメモリマップと先読みキャッシュを完全に解放・再初期化する
+    if (PicoIn.AHW & PAHW_MCD)
+    {
+        PicoExitMCD();
+        PicoInitMCD();
+    }
+    read_ahead_init(&cdda_read_ahead);
+
     // ** Load ROM
     PicoPatchUnload();
 	enum media_type_e media_type;
