@@ -806,52 +806,26 @@ void emulatorInitialize()
 //--------------------------------------------------------
 void emulatorFinalize()
 {
-    consoleClear();
+    consoleInit(screenSettings.SecondScreen, NULL);
+    printf("STEP 1\n"); svcSleepThread(500000000LL);
+
     impl3dsFinalize();
+    printf("STEP 2\n"); svcSleepThread(500000000LL);
 
-#ifndef EMU_RELEASE
-    printf("gspWaitForP3D:\n");
-#endif
-    gspWaitForVBlank();
-    gpu3dsWaitForPreviousFlush();
-    gspWaitForVBlank();
-
-#ifndef EMU_RELEASE
-    printf("snd3dsFinalize:\n");
-#endif
     snd3dsFinalize();
+    printf("STEP 3\n"); svcSleepThread(500000000LL);
 
-#ifndef EMU_RELEASE
-    printf("gpu3dsFinalize:\n");
-#endif
     gpu3dsFinalize();
+    printf("STEP 4\n"); svcSleepThread(500000000LL);
 
-#ifndef EMU_RELEASE
-    printf("ptmSysmExit:\n");
-#endif
     ptmSysmExit();
-
     disableAptHooks();
     finalizeIRED();
-
-#ifndef EMU_RELEASE
-    printf("romfsExit:\n");
-#endif
     romfsExit();
+    printf("STEP 5\n"); svcSleepThread(500000000LL);
 
-#ifndef EMU_RELEASE
-    printf("hidExit:\n");
-#endif
     hidExit();
-
-#ifndef EMU_RELEASE
-    printf("aptExit:\n");
-#endif
     aptExit();
-
-#ifndef EMU_RELEASE
-    printf("srvExit:\n");
-#endif
     srvExit();
 }
 
