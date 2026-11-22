@@ -811,57 +811,25 @@ void emulatorInitialize()
 //--------------------------------------------------------
 void emulatorFinalize()
 {
-    consoleClear();
-
-#ifndef EMU_RELEASE
-    printf("gspWaitForP3D:\n");
-#endif
-    gspWaitForVBlank();
-    gpu3dsWaitForPreviousFlush();
-    gspWaitForVBlank();
-
-#ifndef EMU_RELEASE
-    printf("snd3dsFinalize:\n");
-#endif
+    // 1. サウンド停止
     snd3dsFinalize();
 
-    impl3dsFinalize();
+    // 2. ROMをロードしていた場合のみコアを終了する
+    // （起動直後のメニューからのEXIT時はスキップ）
+    if (romFileName != NULL && romFileName[0] != 0)
+    {
+        impl3dsFinalize();
+    }
 
-#ifndef EMU_RELEASE
-    printf("gpu3dsFinalize:\n");
-#endif
+    // 3. グラフィックス終了
     gpu3dsFinalize();
 
-// ★ここをコメントアウト（初期化していないため）
-// #ifndef EMU_RELEASE
-//     printf("ptmSysmExit:\n");
-// #endif
-//     ptmSysmExit();
-
+    // 4. システムサービス終了
     disableAptHooks();
-
-// ★ここをコメントアウト（ROM起動前だと initIRED() が呼ばれていないため）
-//     finalizeIRED();
-
-#ifndef EMU_RELEASE
-    printf("romfsExit:\n");
-#endif
     romfsExit();
-
-#ifndef EMU_RELEASE
-    printf("hidExit:\n");
-#endif
-	hidExit();
-
-#ifndef EMU_RELEASE
-    printf("aptExit:\n");
-#endif
-	aptExit();
-
-#ifndef EMU_RELEASE
-    printf("srvExit:\n");
-#endif
-	srvExit();
+    hidExit();
+    aptExit();
+    srvExit();
 }
 
 
