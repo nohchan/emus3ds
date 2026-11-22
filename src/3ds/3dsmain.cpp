@@ -802,8 +802,10 @@ void emulatorInitialize()
     else
         file3dsInitialize();
 
-    srvInit();
+    // ★削除する（libctru起動時に既に初期化されているため）
+    // srvInit();
 }
+
 
 
 //--------------------------------------------------------
@@ -814,22 +816,20 @@ void emulatorFinalize()
     // 1. サウンド停止
     snd3dsFinalize();
 
-    // 2. ROMをロードしていた場合のみコアを終了する
-    // （起動直後のメニューからのEXIT時はスキップ）
-    if (romFileName != NULL && romFileName[0] != 0)
-    {
-        impl3dsFinalize();
-    }
+    // 2. コア終了
+    impl3dsFinalize();
 
     // 3. グラフィックス終了
     gpu3dsFinalize();
 
-    // 4. システムサービス終了
+    // 4. アプリ側で開いたサービスのみ終了
     disableAptHooks();
     romfsExit();
-    hidExit();
-    aptExit();
-    srvExit();
+
+    // ★以下の3つは libctru の終了処理(__appExit)が自動で行うため絶対に呼ばない
+    // hidExit();
+    // aptExit();
+    // srvExit();
 }
 
 
