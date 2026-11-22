@@ -521,6 +521,7 @@ bool impl3dsInitializeCore()
 void impl3dsFinalize()
 {
     // ** Finalize
+    PicoExit();
     video3dsFinalize();
 }
 
