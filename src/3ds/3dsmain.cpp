@@ -1089,5 +1089,8 @@ int main()
     // printf("emulatorFinalize:\n");
     emulatorFinalize();
     // printf("Exiting...\n");
+
+    // ★ return 0; の代わりにカーネルへ直接プロセス終了を通知する
+    svcExitProcess();
     return 0;
 }
