@@ -641,7 +641,7 @@ void menuPause()
             }
             else
             {
-                success = menu3dsTakeScreenshot("sdmc:/3ds/screenshot_001.bmp");
+                success = menu3dsTakeScreenshot("/3ds/screenshot_001.bmp");
             }
             menu3dsHideDialog();
 

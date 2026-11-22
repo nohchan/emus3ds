@@ -1234,10 +1234,10 @@ bool menu3dsTakeScreenshot(const char* path)
     FILE *pFile = fopen(path, "wb");
     if (pFile == NULL)
     {
-        char fallbackPath[256];
+        char fallbackPath[256];   // ← [256] をつけて配列にする
         for (int idx = 1; idx <= 999; idx++)
         {
-            snprintf(fallbackPath, sizeof(fallbackPath), "sdmc:/3ds/screenshot_%03d.bmp", idx);
+            snprintf(fallbackPath, sizeof(fallbackPath), "/3ds/screenshot_%03d.bmp", idx);
             FILE *check = fopen(fallbackPath, "rb");
             if (check) { fclose(check); continue; }
             pFile = fopen(fallbackPath, "wb");
