@@ -548,28 +548,47 @@ bool gpu3dsInitialize()
 
 void gpu3dsFinalize()
 {
-    // Bug fix: Free up all shaders' DVLB
-    //
-    // Initialize all shaders to empty
-    //
+    // 1. GPUと画面の転送が完全に終わるまで待つ
+    gspWaitForVBlank();
+    gpu3dsWaitForPreviousFlush();
+    gspWaitForVBlank();
+
+    // 2. シェーダの解放（解放後にNULLを代入して二重解放を防ぐ）
     for (int i = 0; i < 10; i++)
     {
         if (GPU3DS.shaders[i].dvlb)
+        {
             DVLB_Free(GPU3DS.shaders[i].dvlb);
+            GPU3DS.shaders[i].dvlb = NULL;
+        }
     }
 
-    // Bug fix: free the frame buffers!
-    if (GPU3DS.frameBuffer) vramFree(GPU3DS.frameBuffer);
-    if (GPU3DS.frameDepthBuffer) vramFree(GPU3DS.frameDepthBuffer);
+    // 3. フレームバッファ・デプスバッファの解放
+    if (GPU3DS.frameBuffer)
+    {
+        vramFree(GPU3DS.frameBuffer);
+        GPU3DS.frameBuffer = NULL;
+    }
+    if (GPU3DS.frameDepthBuffer)
+    {
+        vramFree(GPU3DS.frameDepthBuffer);
+        GPU3DS.frameDepthBuffer = NULL;
+    }
 
-    LINEARFREE_SAFE(gpuCommandBuffer1);
-    LINEARFREE_SAFE(gpuCommandBuffer2);
+    // 4. コマンドバッファの解放
+    if (gpuCommandBuffer1)
+    {
+        linearFree(gpuCommandBuffer1);
+        gpuCommandBuffer1 = NULL;
+    }
+    if (gpuCommandBuffer2)
+    {
+        linearFree(gpuCommandBuffer2);
+        gpuCommandBuffer2 = NULL;
+    }
 
-#ifndef EMU_RELEASE
-    printf("gfxExit:\n");
-#endif
-
-	gfxExit();
+    // 5. グラフィックスシステム終了
+    gfxExit();
 }
 
 void gpu3dsEnableAlphaTestNotEqualsZero()
