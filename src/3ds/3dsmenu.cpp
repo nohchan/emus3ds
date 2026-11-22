@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <3ds.h>
+#include <cstdlib>
 
 #include "3dstypes.h"
 #include "3dsexit.h"
@@ -1236,7 +1237,7 @@ bool menu3dsTakeScreenshot(const char* path)
     // Modified this to take only the top screen
     //
     u32 bitmapsize = screenSettings.GameScreenWidth * 240 * 2;
-    u8* tempbuf = (u8*)linearAlloc(0x8A + screenSettings.GameScreenWidth * 240 * 2);
+    u8* tempbuf = (u8*)malloc(0x8A + screenSettings.GameScreenWidth * 240 * 2);
     if (tempbuf == NULL)
     {
         fclose(pFile);
@@ -1276,6 +1277,6 @@ bool menu3dsTakeScreenshot(const char* path)
     fwrite(tempbuf, sizeof(char), 0x8A + bitmapsize, pFile);
     fclose(pFile);
 
-    linearFree(tempbuf);
+    free(tempbuf);
     return true;
 }
