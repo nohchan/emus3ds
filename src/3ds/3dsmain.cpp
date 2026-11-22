@@ -635,9 +635,13 @@ void menuPause()
             }
 
             bool success = false;
-            if (path)
+            if (path && path[0] != 0)
             {
                 success = menu3dsTakeScreenshot(path);
+            }
+            else
+            {
+                success = menu3dsTakeScreenshot("sdmc:/3ds/screenshot_001.bmp");
             }
             menu3dsHideDialog();
 
@@ -821,12 +825,12 @@ void emulatorFinalize()
 #endif
     snd3dsFinalize();
 
+    impl3dsFinalize();
+
 #ifndef EMU_RELEASE
     printf("gpu3dsFinalize:\n");
 #endif
     gpu3dsFinalize();
-
-    impl3dsFinalize();
 
 #ifndef EMU_RELEASE
     printf("ptmSysmExit:\n");
