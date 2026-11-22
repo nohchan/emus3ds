@@ -1246,49 +1246,39 @@ bool menu3dsTakeScreenshot(const char* path)
     }
     if (pFile == NULL) return false;
 
-    // Modified this to take only the top screen
-    //
     u32 bitmapsize = screenSettings.GameScreenWidth * 240 * 2;
-    u8* tempbuf = (u8*)malloc(0x8A + screenSettings.GameScreenWidth * 240 * 2);
-    if (tempbuf == NULL)
-    {
-        fclose(pFile);
-        return false;
-    }
-    memset(tempbuf, 0, 0x8A + bitmapsize);
+    u8 header[0x8A];
+    memset(header, 0, sizeof(header));
 
-    *(u16*)&tempbuf[0x0] = 0x4D42;
-    *(u32*)&tempbuf[0x2] = 0x8A + bitmapsize;
-    *(u32*)&tempbuf[0xA] = 0x8A;
-    *(u32*)&tempbuf[0xE] = 0x28;
-    *(u32*)&tempbuf[0x12] = screenSettings.GameScreenWidth;
-    *(u32*)&tempbuf[0x16] = 240;
-    *(u32*)&tempbuf[0x1A] = 0x1;
-    *(u32*)&tempbuf[0x1C] = 0x10;
-    *(u32*)&tempbuf[0x1E] = 0x3;
-    *(u32*)&tempbuf[0x22] = bitmapsize;
-    *(u32*)&tempbuf[0x36] = 0x0000F800;
-    *(u32*)&tempbuf[0x3A] = 0x000007E0;
-    *(u32*)&tempbuf[0x3E] = 0x0000001F;
-    *(u32*)&tempbuf[0x42] = 0x00000000;
+    *(u16*)&header[0x0] = 0x4D42;
+    *(u32*)&header[0x2] = 0x8A + bitmapsize;
+    *(u32*)&header[0xA] = 0x8A;
+    *(u32*)&header[0xE] = 0x28;
+    *(u32*)&header[0x12] = screenSettings.GameScreenWidth;
+    *(u32*)&header[0x16] = 240;
+    *(u32*)&header[0x1A] = 0x1;
+    *(u32*)&header[0x1C] = 0x10;
+    *(u32*)&header[0x1E] = 0x3;
+    *(u32*)&header[0x22] = bitmapsize;
+    *(u32*)&header[0x36] = 0x0000F800;
+    *(u32*)&header[0x3A] = 0x000007E0;
+    *(u32*)&header[0x3E] = 0x0000001F;
+    *(u32*)&header[0x42] = 0x00000000;
 
+    fwrite(header, 1, sizeof(header), pFile);
+
+    u16 linebuf[400];
     u8* framebuf = (u8*)gfxGetFramebuffer(screenSettings.GameScreen, GFX_LEFT, NULL, NULL);
     for (y = 0; y < 240; y++)
     {
         for (x = 0; x < screenSettings.GameScreenWidth; x++)
         {
             int si = 1 + (((239 - y) + (x * 240)) * 4);
-            int di = 0x8A + (x + ((239 - y) * screenSettings.GameScreenWidth)) * 2;
-
-            u16 word = RGB8_to_565(framebuf[si++], framebuf[si++], framebuf[si++]);
-            tempbuf[di++] = word & 0xFF;
-            tempbuf[di++] = word >> 8;
+            linebuf[x] = RGB8_to_565(framebuf[si], framebuf[si + 1], framebuf[si + 2]);
         }
+        fwrite(linebuf, sizeof(u16), screenSettings.GameScreenWidth, pFile);
     }
 
-    fwrite(tempbuf, sizeof(char), 0x8A + bitmapsize, pFile);
     fclose(pFile);
-
-    free(tempbuf);
     return true;
 }
