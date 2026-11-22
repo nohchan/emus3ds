@@ -24,7 +24,6 @@ PICO_INTERNAL void PicoInitMCD(void)
 PICO_INTERNAL void PicoExitMCD(void)
 {
   cdd_unload();
-  memset(Pico_mcd, 0, sizeof(*Pico_mcd));
 }
 
 
