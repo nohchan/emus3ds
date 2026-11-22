@@ -588,7 +588,7 @@ void gpu3dsFinalize()
     }
 
     // 5. グラフィックスシステム終了
-//    gfxExit();
+    gfxExit();
 }
 
 void gpu3dsEnableAlphaTestNotEqualsZero()

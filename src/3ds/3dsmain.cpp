@@ -804,29 +804,24 @@ void emulatorInitialize()
 //--------------------------------------------------------
 // Finalize the emulator.
 //--------------------------------------------------------
+//--------------------------------------------------------
+// Finalize the emulator.
+//--------------------------------------------------------
 void emulatorFinalize()
 {
-    consoleInit(screenSettings.SecondScreen, NULL);
-    printf("STEP 1\n"); svcSleepThread(500000000LL);
-
     impl3dsFinalize();
-    printf("STEP 2\n"); svcSleepThread(500000000LL);
+
+    gspWaitForVBlank();
+    gpu3dsWaitForPreviousFlush();
+    gspWaitForVBlank();
 
     snd3dsFinalize();
-    printf("STEP 3\n"); svcSleepThread(500000000LL);
-
     gpu3dsFinalize();
-    printf("STEP 4\n"); svcSleepThread(500000000LL);
 
     ptmSysmExit();
     disableAptHooks();
     finalizeIRED();
     romfsExit();
-    printf("STEP 5\n"); svcSleepThread(500000000LL);
-
-//    hidExit();
-//    aptExit();
-//    srvExit();
 }
 
 
@@ -1090,7 +1085,5 @@ int main()
     emulatorFinalize();
     // printf("Exiting...\n");
 
-    // ★ return 0; の代わりにカーネルへ直接プロセス終了を通知する
-    svcExitProcess();
     return 0;
 }
