@@ -1115,8 +1115,8 @@ int main()
 
     fileList.clear();
 
-    if (emulator.emulatorState > 0 && settings3DS.AutoSavestate)
-        impl3dsLoadState(0);
+//    if (emulator.emulatorState > 0 && settings3DS.AutoSavestate)
+//        impl3dsLoadState(0);
 
     // printf("emulatorFinalize:\n");
     emulatorFinalize();
