@@ -746,6 +746,7 @@ void emulatorInitialize()
     mkdir("/3ds/temperpce_3ds", 0777);
     mkdir("/3ds/temperpce_3ds/syscards", 0777);
 
+    file3dsInitialize();
 
     romFileNameLastSelected[0] = 0;
 
@@ -795,15 +796,7 @@ void emulatorInitialize()
     if (file3dsGetCurrentDir()[0] == 0)
         file3dsInitialize();
 
-    // 読み込んだDirが存在しない場合はルートに戻す
-    DIR *d = opendir(file3dsGetCurrentDir());
-    if (d)
-        closedir(d);
-    else
-        file3dsInitialize();
-
-    // ★削除する（libctru起動時に既に初期化されているため）
-    // srvInit();
+    srvInit();
 }
 
 
@@ -813,23 +806,53 @@ void emulatorInitialize()
 //--------------------------------------------------------
 void emulatorFinalize()
 {
-    // 1. サウンド停止
-    snd3dsFinalize();
-
-    // 2. コア終了
+    consoleClear();
     impl3dsFinalize();
 
-    // 3. グラフィックス終了
+#ifndef EMU_RELEASE
+    printf("gspWaitForP3D:\n");
+#endif
+    gspWaitForVBlank();
+    gpu3dsWaitForPreviousFlush();
+    gspWaitForVBlank();
+
+#ifndef EMU_RELEASE
+    printf("snd3dsFinalize:\n");
+#endif
+    snd3dsFinalize();
+
+#ifndef EMU_RELEASE
+    printf("gpu3dsFinalize:\n");
+#endif
     gpu3dsFinalize();
 
-    // 4. アプリ側で開いたサービスのみ終了
+#ifndef EMU_RELEASE
+    printf("ptmSysmExit:\n");
+#endif
+    ptmSysmExit();
+
     disableAptHooks();
+    finalizeIRED();
+
+#ifndef EMU_RELEASE
+    printf("romfsExit:\n");
+#endif
     romfsExit();
 
-    // ★以下の3つは libctru の終了処理(__appExit)が自動で行うため絶対に呼ばない
-    // hidExit();
-    // aptExit();
-    // srvExit();
+#ifndef EMU_RELEASE
+    printf("hidExit:\n");
+#endif
+    hidExit();
+
+#ifndef EMU_RELEASE
+    printf("aptExit:\n");
+#endif
+    aptExit();
+
+#ifndef EMU_RELEASE
+    printf("srvExit:\n");
+#endif
+    srvExit();
 }
 
 
