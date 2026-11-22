@@ -618,38 +618,46 @@ void menuPause()
             menu3dsShowDialog(getText("Screenshot"), getText("Taking screenshot...\nPlease wait."), Themes[settings3DS.Theme].dialogColorInfo, NULL);
 
             char ext[256];
-            const char *path = NULL;
-
-            // Loop through and look for an non-existing
-            // file name.
-            //
-            int i = 1;
-            while (i <= 999)
-            {
-                snprintf(ext, 255, ".b%03d.bmp", i);
-                path = file3dsReplaceFilenameExtension(romFileNameFullPath, ext);
-                if (!IsFileExists(path))
-                    break;
-                path = NULL;
-                i++;
-            }
-
+            char savedPath[512] = {0};
             bool success = false;
-            if (path && path[0] != 0)
+
+            // 1. まずROMと同じフォルダ・ファイル名での保存を試みる
+            for (int i = 1; i <= 999; i++)
             {
-                success = menu3dsTakeScreenshot(path);
+                snprintf(ext, sizeof(ext), ".b%03d.bmp", i);
+                const char *candidate = file3dsReplaceFilenameExtension(romFileNameFullPath, ext);
+                if (!IsFileExists(candidate))
+                {
+                    if (menu3dsTakeScreenshot(candidate))
+                    {
+                        strncpy(savedPath, candidate, sizeof(savedPath) - 1);
+                        success = true;
+                    }
+                    break;
+                }
             }
-            else
+
+            // 2. CDゲーム等でファイル名が長すぎる・特殊文字等で失敗した場合は /3ds/ 直下に保存する
+            if (!success)
             {
-                success = menu3dsTakeScreenshot("/3ds/screenshot_001.bmp");
+                for (int i = 1; i <= 999; i++)
+                {
+                    snprintf(savedPath, sizeof(savedPath), "/3ds/screenshot_%03d.bmp", i);
+                    if (!IsFileExists(savedPath))
+                    {
+                        success = menu3dsTakeScreenshot(savedPath);
+                        break;
+                    }
+                }
             }
+
             menu3dsHideDialog();
 
             if (success)
             {
                 char text[600];
 #define getText getTextFromMap
-                snprintf(text, 600, getText("Done! Saved to %s"), path);
+                snprintf(text, sizeof(text), getText("Done! Saved to %s"), savedPath);
                 menu3dsShowDialog(getText("Screenshot"), text, Themes[settings3DS.Theme].dialogColorSuccess, optionsForOk, -1, true);
 #undef getText
                 menu3dsHideDialog();
