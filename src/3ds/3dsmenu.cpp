@@ -1232,6 +1232,18 @@ bool menu3dsTakeScreenshot(const char* path)
     int x, y;
 
     FILE *pFile = fopen(path, "wb");
+    if (pFile == NULL)
+    {
+        char fallbackPath[256];
+        for (int idx = 1; idx <= 999; idx++)
+        {
+            snprintf(fallbackPath, sizeof(fallbackPath), "sdmc:/3ds/screenshot_%03d.bmp", idx);
+            FILE *check = fopen(fallbackPath, "rb");
+            if (check) { fclose(check); continue; }
+            pFile = fopen(fallbackPath, "wb");
+            break;
+        }
+    }
     if (pFile == NULL) return false;
 
     // Modified this to take only the top screen

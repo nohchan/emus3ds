@@ -808,7 +808,6 @@ void emulatorInitialize()
 void emulatorFinalize()
 {
     consoleClear();
-    impl3dsFinalize();
 
 #ifndef EMU_RELEASE
     printf("gspWaitForP3D:\n");
@@ -826,6 +825,8 @@ void emulatorFinalize()
     printf("gpu3dsFinalize:\n");
 #endif
     gpu3dsFinalize();
+
+    impl3dsFinalize();
 
 #ifndef EMU_RELEASE
     printf("ptmSysmExit:\n");
