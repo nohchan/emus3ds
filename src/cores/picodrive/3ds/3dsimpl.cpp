@@ -419,7 +419,7 @@ bool impl3dsInitializeCore()
 	memset(&defaultConfig, 0, sizeof(defaultConfig));
 	defaultConfig.EmuOpt    = 0x9d | EOPT_EN_CD_LEDS;
 	defaultConfig.s_PicoOpt = POPT_EN_STEREO|POPT_EN_FM|POPT_EN_PSG|POPT_EN_Z80 |
-				  POPT_EN_MCD_PCM|POPT_EN_MCD_CDDA|POPT_EN_MCD_GFX | POPT_EN_MCD_RAMCART |
+				  POPT_EN_MCD_PCM|POPT_EN_MCD_CDDA|POPT_EN_MCD_GFX |
 				  POPT_ACC_SPRITES |
 				  POPT_EN_32X|POPT_EN_PWM | POPT_DIS_IDLE_DET;
 	defaultConfig.s_PsndRate = sampleRate;
