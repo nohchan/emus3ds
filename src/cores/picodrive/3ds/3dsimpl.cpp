@@ -333,7 +333,7 @@ SMenuItem emulatorMenu[] = {
 #define REAL3DS_VERTEX_BUFFER_SIZE      0x10000
 
 // Memory Usage = 0.003 MB   for 2-point rectangle vertex buffer (Real 3DS only)
-#define REAL3DS_TILE_BUFFER_SIZE        0x200000
+#define REAL3DS_TILE_BUFFER_SIZE        0x10000
 
 
 
@@ -425,7 +425,7 @@ bool impl3dsInitializeCore()
 	defaultConfig.s_PsndRate = sampleRate;
 	defaultConfig.s_PicoRegion = 0; // auto
 	defaultConfig.s_PicoAutoRgnOrder = 0x814; // US, JP, EU
-	defaultConfig.s_PicoCDBuffers = 1024;
+	defaultConfig.s_PicoCDBuffers = 0;
 	defaultConfig.confirm_save = EOPT_CONFIRM_SAVE;
 	defaultConfig.Frameskip = -1; // auto
 	defaultConfig.input_dev0 = PICO_INPUT_PAD_3BTN;
@@ -501,7 +501,6 @@ bool impl3dsInitializeCore()
     printf("IsReal3DS: %d\n", emulator.isReal3DS);
 #endif
 
-/*
     if (hack3dsInitializeSvcHack())
     {
         if (hack3dsTestDynamicRecompilation())
@@ -510,7 +509,7 @@ bool impl3dsInitializeCore()
             PicoIn.opt |= POPT_EN_DRC;
         }
     }
-*/
+
 
     aptSetHomeAllowed(false);
     return true;
