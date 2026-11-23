@@ -333,7 +333,7 @@ SMenuItem emulatorMenu[] = {
 #define REAL3DS_VERTEX_BUFFER_SIZE      0x10000
 
 // Memory Usage = 0.003 MB   for 2-point rectangle vertex buffer (Real 3DS only)
-#define REAL3DS_TILE_BUFFER_SIZE        0x200000
+#define REAL3DS_TILE_BUFFER_SIZE        0x4000
 
 
 
