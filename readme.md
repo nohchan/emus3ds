@@ -7,13 +7,15 @@
 * (PicoDrive)
   - ＣＤゲームを動くようにした。
   - ＣＤゲーム動かしてから、次のゲームへ選べるようにした。
+* (TemperPCE)
+  - ＣＤゲームはもともと動いてた
   
 
 ## 今後、対応したいこと
 * (PicoDrive)
   - ＣＤゲームを動かしてるときに、スクリーンショット撮れるようにしたい。
 * (TemperPCE)
-  - 何故かＣＤゲームが動かないので動かしたい
+  - ＣＤゲーム（Games Express のソフト）が動かないので対応したい（無理だろうなぁ）
  
  
   
@@ -45,9 +47,11 @@
 <table>
   <tr>
     <td width="50%" align="center"><img src="screenshots/pce_r_type.png" alt="pce r_type" valign="bottom"></td>
+    <td width="50%" align="center"><img src="screenshots/pce_ys.png" alt="pce ys" valign="bottom"></td>
   </tr>
   <tr>
     <td valign="top" width="50%" align="center">日本語ファイル名 画面</td>
+    <td valign="top" width="50%" align="center">ＣＤゲーム 画面</td>
   </tr>
   <tr><td colspan="2"></td></tr>
  </table>
