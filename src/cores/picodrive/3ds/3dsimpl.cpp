@@ -425,7 +425,7 @@ bool impl3dsInitializeCore()
 	defaultConfig.s_PsndRate = sampleRate;
 	defaultConfig.s_PicoRegion = 0; // auto
 	defaultConfig.s_PicoAutoRgnOrder = 0x814; // US, JP, EU
-	defaultConfig.s_PicoCDBuffers = 0;
+	defaultConfig.s_PicoCDBuffers = 1024;
 	defaultConfig.confirm_save = EOPT_CONFIRM_SAVE;
 	defaultConfig.Frameskip = -1; // auto
 	defaultConfig.input_dev0 = PICO_INPUT_PAD_3BTN;
@@ -501,6 +501,7 @@ bool impl3dsInitializeCore()
     printf("IsReal3DS: %d\n", emulator.isReal3DS);
 #endif
 
+/*
     if (hack3dsInitializeSvcHack())
     {
         if (hack3dsTestDynamicRecompilation())
@@ -509,6 +510,7 @@ bool impl3dsInitializeCore()
             PicoIn.opt |= POPT_EN_DRC;
         }
     }
+*/
 
     aptSetHomeAllowed(false);
     return true;
