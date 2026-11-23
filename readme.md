@@ -14,10 +14,7 @@
 ## 今後、対応したいこと
 * (PicoDrive)
   - ＣＤゲームを動かしてるときに、スクリーンショット撮れるようにしたい。
-* (TemperPCE)
-  - ＣＤゲーム（Games Express のソフト）が動かないので対応したい（無理だろうなぁ）
- 
- 
+
   
 ## Biosに関して
 * Biosを入れる場所を変更した
@@ -46,12 +43,14 @@
 
 <table>
   <tr>
-    <td width="50%" align="center"><img src="screenshots/pce_r_type.png" alt="pce r_type" valign="bottom"></td>
-    <td width="50%" align="center"><img src="screenshots/pce_ys.png" alt="pce ys" valign="bottom"></td>
+    <td width="33%" align="center"><img src="screenshots/pce_r_type.png" alt="pce r_type" valign="bottom"></td>
+    <td width="33%" align="center"><img src="screenshots/pce_ys.png" alt="pce ys" valign="bottom"></td>
+    <td width="33%" align="center"><img src="screenshots/pce_game_express.png" alt="pce ys" valign="bottom"></td>
   </tr>
   <tr>
-    <td valign="top" width="50%" align="center">日本語ファイル名 画面</td>
-    <td valign="top" width="50%" align="center">ＣＤゲーム 画面</td>
+    <td valign="top" width="33%" align="center">日本語ファイル名 画面</td>
+    <td valign="top" width="33%" align="center">ＣＤゲーム 画面</td>
+    <td valign="top" width="33%" align="center">GAMES EXPRESSゲーム 画面</td>
   </tr>
   <tr><td colspan="2"></td></tr>
  </table>
