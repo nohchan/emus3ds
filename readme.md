@@ -33,8 +33,8 @@
     <td width="50%" align="center"><img src="screenshots/nes_zelda.png" alt="fds zelda" valign="bottom"></td>
   </tr>
   <tr>
-    <td valign="top" width="50%" align="center">日本語ファイル名 表示</td>
-    <td valign="top" width="50%" align="center">ディスク システム起動</td>
+    <td valign="top" width="50%" align="center">日本語ファイル名 画面</td>
+    <td valign="top" width="50%" align="center">ディスク システム 画面</td>
   </tr>
   <tr><td colspan="2"></td></tr>
  </table>
@@ -47,7 +47,7 @@
     <td width="50%" align="center"><img src="screenshots/pce_r_type.png" alt="pce r_type" valign="bottom"></td>
   </tr>
   <tr>
-    <td valign="top" width="50%" align="center">日本語ファイル名 表示</td>
+    <td valign="top" width="50%" align="center">日本語ファイル名 画面</td>
   </tr>
   <tr><td colspan="2"></td></tr>
  </table>
@@ -60,7 +60,7 @@
     <td width="50%" align="center"><img src="screenshots/md_hokuto.png" alt="md hokuto" valign="bottom"></td>
   </tr>
   <tr>
-    <td valign="top" width="50%" align="center">日本語ファイル名 表示</td>
+    <td valign="top" width="50%" align="center">日本語ファイル名 画面</td>
   </tr>
   <tr><td colspan="2"></td></tr>
  </table>
