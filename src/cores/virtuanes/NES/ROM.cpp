@@ -61,6 +61,11 @@ static struct CHINF moo[] =
 	#include "ines-correct.h"
 };
 
+char *strcasestr(const char *s, const char *find);
+
+//
+// コンストラクタ
+
 
 //
 // コンストラクタ
@@ -143,15 +148,15 @@ LONG	FileSize;
 			// ヘッダコピー
 			memcpy( &header, temp, sizeof(NESHEADER) );
 			header.control1 = 0;
-		} else if( ((header.ID[0] == 0x01 && header.ID[1] == '*'
+		} else if( (header.ID[0] == 0x01 && header.ID[1] == '*'
 			&& header.ID[2] == 'N' && header.ID[3] == 'I') ||
-			header.ID[0] == 0x00) &&
-			FileSize >= 65500 && (FileSize % 65500) == 0) {
+			strcasestr(fname, ".fds") != NULL ) {
 			header.ID[0] = 'F';
 			header.ID[1] = 'D';
 			header.ID[2] = 'S';
 			header.ID[3] = 0x1A;
-			header.PRG_PAGE_SIZE = FileSize / 65500;
+			header.PRG_PAGE_SIZE = (FileSize + 65499) / 65500;
+			if (header.PRG_PAGE_SIZE == 0) header.PRG_PAGE_SIZE = 1;
 			header.control1 = 1;
 		} else if( header.ID[0] == 'N' && header.ID[1] == 'E'
 			&& header.ID[2] == 'S' && header.ID[3] == 'M') {
@@ -426,7 +431,7 @@ LONG	FileSize;
 				error =	CApp::GetErrorString( IDS_ERROR_ILLEGALDISKSIZE );
 				goto has_error;
 			}
-			if( header.control1 == 1 && FileSize < (65500*diskno) ) {
+			if( header.control1 == 1 && FileSize < (65500*(diskno-1) + 16384) ) {
 				// ディスクサイズが異常です
 				error =	CApp::GetErrorString( IDS_ERROR_ILLEGALDISKSIZE );
 				goto has_error;
@@ -467,9 +472,11 @@ LONG	FileSize;
 
 			::memcpy( lpPRG, &header, sizeof(NESHEADER) );
 
-			if (headerlessFDS)
-				::memcpy( lpPRG+sizeof(NESHEADER), temp, 65500*(LONG)diskno );
-			else
+			if (headerlessFDS) {
+				ZEROMEMORY( lpPRG+sizeof(NESHEADER), 65500*(LONG)diskno );
+				LONG copySize = (FileSize < 65500*(LONG)diskno) ? FileSize : 65500*(LONG)diskno;
+				::memcpy( lpPRG+sizeof(NESHEADER), temp, copySize );
+			} else
 				::memcpy( lpPRG+sizeof(NESHEADER), temp+sizeof(NESHEADER), 65500*(LONG)diskno );
 			// データの書き換え場所特定用
 			ZEROMEMORY( lpDisk, PRGsize );
@@ -713,7 +720,7 @@ NESHEADER	header;
 		return	0;
 	} else if( (header.ID[0] == 0x01 && header.ID[1] == '*'
 		&& header.ID[2] == 'N' && header.ID[3] == 'I') ||
-		header.ID[0] == 0x00 ) {
+		strcasestr(fname, ".fds") != NULL ) {
 		return	0;
 	} else if( header.ID[0] == 'N' && header.ID[1] == 'E'
 		&& header.ID[2] == 'S' && header.ID[3] == 'M') {
