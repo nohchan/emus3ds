@@ -494,7 +494,10 @@ bool impl3dsLoadROM(char *romFilePath)
 
 	nes = new NES(romFilePath);
 	if (nes->error)
+	{
+		menu3dsShowDialog("Error", nes->error, DIALOG_TYPE_ERROR, NULL);
 		return false;
+	}
 
 	//nes->ppu->SetScreenPtr( NULL, linecolor );
 	nes->ppu->SetScreenRGBAPtr((WORD*) video3dsGetCurrentSoftwareBuffer(), linecolor );
