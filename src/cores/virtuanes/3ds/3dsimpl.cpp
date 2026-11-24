@@ -495,7 +495,7 @@ bool impl3dsLoadROM(char *romFilePath)
 	nes = new NES(romFilePath);
 	if (nes->error)
 	{
-		menu3dsShowDialog("Error", nes->error, DIALOG_TYPE_ERROR, NULL);
+		menu3dsShowDialog("Error", nes->error, DIALOG_TYPE_WARN, NULL);
 		return false;
 	}
 
