@@ -143,9 +143,10 @@ LONG	FileSize;
 			// ヘッダコピー
 			memcpy( &header, temp, sizeof(NESHEADER) );
 			header.control1 = 0;
-		} else if( header.ID[0] == 0x01 && header.ID[1] == '*'
-			&& header.ID[2] == 'N' && header.ID[3] == 'I' &&
-			(FileSize % 65500) == 0) {
+		} else if( ((header.ID[0] == 0x01 && header.ID[1] == '*'
+			&& header.ID[2] == 'N' && header.ID[3] == 'I') ||
+			header.ID[0] == 0x00) &&
+			FileSize >= 65500 && (FileSize % 65500) == 0) {
 			header.ID[0] = 'F';
 			header.ID[1] = 'D';
 			header.ID[2] = 'S';
@@ -710,8 +711,9 @@ NESHEADER	header;
 	} else if( header.ID[0] == 'F' && header.ID[1] == 'D'
 		&& header.ID[2] == 'S' && header.ID[3] == 0x1A ) {
 		return	0;
-	} else if( header.ID[0] == 0x01 && header.ID[1] == '*'
-		&& header.ID[2] == 'N' && header.ID[3] == 'I' ) {
+	} else if( (header.ID[0] == 0x01 && header.ID[1] == '*'
+		&& header.ID[2] == 'N' && header.ID[3] == 'I') ||
+		header.ID[0] == 0x00 ) {
 		return	0;
 	} else if( header.ID[0] == 'N' && header.ID[1] == 'E'
 		&& header.ID[2] == 'S' && header.ID[3] == 'M') {
