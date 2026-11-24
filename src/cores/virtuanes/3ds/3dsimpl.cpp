@@ -87,6 +87,7 @@ SMenuItem optionsForPalette[] = {
     MENU_MAKE_LASTITEM  ()
 };
 
+
 SMenuItem optionsForFrameskip[] = {
     MENU_MAKE_DIALOG_ACTION (0, getText("Disabled"),              ""),
     MENU_MAKE_DIALOG_ACTION (1, getText("Enabled (max 1 frame)"), ""),
@@ -146,7 +147,7 @@ SMenuItem optionsFor3DSButtons[] = {
 
 SMenuItem optionsForSpriteFlicker[] =
 {
-    MENU_MAKE_DIALOG_ACTION (0, getText("Hardware Accurate"),   getText("Show flickering like real hardware")),
+MENU_MAKE_DIALOG_ACTION (0, getText("Hardware Accurate"),   getText("Show flickering like real hardware")),
     MENU_MAKE_DIALOG_ACTION (1, getText("Better Visuals"),      getText("Reduce accuracy for better visuals")),
     MENU_MAKE_LASTITEM  ()
 };
@@ -606,7 +607,7 @@ SGPUTexture 	*screenTexture = 0;
 // before the emulation loop begins.
 //---------------------------------------------------------
 void impl3dsEmulationBegin()
-{
+{	
 	bufferToTransfer = 0;
 	screenTexture = 0;
 	skipDrawingPreviousFrame = true;
