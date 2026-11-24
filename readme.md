@@ -4,9 +4,20 @@
 ## 現在対応したこと
 * ゲーム選択画面を日本語ファイルでも表示出来るようにした
 * 中華表示を消して、Englishのみの表示にした
+
+* (VirtuaNES)
+  - カラーパレット変更機能を追加
+  - ゲームのプレイ中にリセットなしで画面のカラーパレット（色合い）をリアルタイムに切り替えられるようになりました。
+  - FDS（ファミコンディスクシステム）の互換性・読み込み処理を修正
+    - 標準ヘッダなしの FDS ROM ファイルの読み込みに対応しました。
+  - FDS 音源およびディスク制御周りのエミュレーション処理を修正しました。
+  - 各種マッパー・コアエミュレーションの精度向上
+    - CPU / PPU / MMU および一部マッパーの動作不具合を修正し、ソフトの互換性を向上させました。
+
 * (PicoDrive)
   - ＣＤゲームを動くようにした。
   - ＣＤゲーム動かしてから、次のゲームへ選べるようにした。
+
 * (TemperPCE)
   - ＣＤゲームはもともと動いてた
   
@@ -73,3 +84,4 @@
 ### Credits
 - [bubble2k16](https://github.com/bubble2k16): Original author of original English version
 - R-YaTian, [Emus for 3DS](https://github.com/R-YaTian), for creating the excellent base this fork builds on
+- TBirdSoars, [VirtuaNES](https://github.com/TBirdSoars/VirtuaNES), for creating the excellent base this fork builds on
